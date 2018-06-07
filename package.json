@@ -14,19 +14,26 @@
   },
   "homepage": "https://github.com/hg-pyun/axios-intercept-logger#readme",
   "devDependencies": {
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
-    "babel-minify": "^0.4.3",
-    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-minify": "^0.4.3",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "cookie-parser": "^1.4.3",
     "cross-env": "^5.1.6",
-    "eslint": "^4.19.1"
+    "eslint": "^4.19.1",
+    "express": "^4.16.3"
   },
   "dependencies": {
     "chalk": "^2.4.1"
   },
+  "babel": {
+    "presets": ["env"]
+  },
   "scripts": {
-    "build": "cross-env BABEL_ENV=production npx babel ./src/index.js --out-file ./lib/axios-intercept-logger.js"
+    "dev": "nodemon --exec babel-node test/server.js",
+    "build": "cross-env BABEL_ENV=production npx babel ./src/index.js --out-file ./lib/axios-intercept-logger.js",
+    "lint": "eslint --fix src/**"
   }
 }
