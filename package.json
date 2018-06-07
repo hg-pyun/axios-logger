@@ -1,0 +1,19 @@
+{
+  "name": "axios-intercept-logger",
+  "version": "1.0.0",
+  "description": "convert http request to curl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hg-pyun/axios-intercept-logger.git"
+  },
+  "author": "Haegul Pyun(phg2491@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hg-pyun/axios-intercept-logger/issues"
+  },
+  "homepage": "https://github.com/hg-pyun/axios-intercept-logger#readme"
+}

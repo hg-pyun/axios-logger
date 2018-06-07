@@ -1,2 +1,2 @@
-# curler
-convert http request to curl
+# axios-intercept-logger
+Beautify AJAX Logging Messages.
