@@ -29,7 +29,9 @@
     "chalk": "^2.4.1"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   },
   "scripts": {
     "dev": "nodemon --exec babel-node test/server.js",
