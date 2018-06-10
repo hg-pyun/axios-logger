@@ -7,7 +7,8 @@
     "type": "git",
     "url": "git+https://github.com/hg-pyun/axios-intercept-logger.git"
   },
-  "author": "Haegul Pyun(phg2491@gmail.com)",
+  "author": "Haegul Pyun",
+  "email": "phg2491@gmail.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hg-pyun/axios-intercept-logger/issues"
