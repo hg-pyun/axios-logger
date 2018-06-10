@@ -1,9 +1,16 @@
 {
   "name": "axios-logger",
-  "version": "0.0.1",
-  "description": "convert http request to curl",
-  "main": "index.js",
-  "repository": {
+  "version": "0.0.2",
+  "description": "Beautify Axios Logging Messages",
+  "main": "src/index.js",
+  "keywords": [
+    "javascript",
+    "axios",
+    "http",
+    "log",
+    "logger"
+  ],
+  "repo,sitory": {
     "type": "git",
     "url": "git+https://github.com/hg-pyun/axios-intercept-logger.git"
   },

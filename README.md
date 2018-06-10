@@ -1,2 +1,7 @@
 # axios-logger
-Beautify AJAX Logging Messages.
+Beautify Axios Logging Messages.
+
+# Installation
+```
+$ npm install axios-logger --save-dev
+```
