@@ -1,6 +1,6 @@
 {
-  "name": "axios-intercept-logger",
-  "version": "1.0.0",
+  "name": "axios-logger",
+  "version": "0.0.1",
   "description": "convert http request to curl",
   "main": "index.js",
   "repository": {

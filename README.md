@@ -1,2 +1,2 @@
-# axios-intercept-logger
+# axios-logger
 Beautify AJAX Logging Messages.
