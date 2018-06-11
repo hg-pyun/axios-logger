@@ -1,8 +1,11 @@
 const chalk = require('chalk');
+const globalConfig = require('../config');
 const Printer = require('../utility/Printer');
 
-function requestLogger(config) {
-    const {url, method, data, contentType, responseType} = config;
+function requestLogger(axiosConfig) {
+    const {url, method, data, contentType, responseType} = axiosConfig;
+
+    console.log('config', globalConfig.getConfig());
 
     const printer = new Printer();
 
@@ -14,7 +17,7 @@ function requestLogger(config) {
 
     printer.execute();
 
-    return config;
+    return axiosConfig;
 }
 
 

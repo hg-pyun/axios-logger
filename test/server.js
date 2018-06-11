@@ -4,7 +4,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
-import {requestLogger} from '../src/index';
+import AxiosLogger from '../src/index';
 
 const app = new express();
 const server = http.Server(app);
@@ -17,9 +17,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
 
+AxiosLogger.config.setConfig({
+    responseType: 0
+});
+
 app.get('/get', (req, res, next) => {
     const instance = axios.create();
-    instance.interceptors.request.use(requestLogger);
+    instance.interceptors.request.use(AxiosLogger.requestLogger);
 
     instance.get('http://localhost:3000/echo/get?echo=hello').then((data)=>{
         res.json(200);
