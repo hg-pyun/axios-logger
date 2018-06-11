@@ -3,20 +3,21 @@ class Printer {
         this.textArray = [];
     }
 
-    addLine(string) {
-        this.textArray.push(string);
+    addText(string) {
+        if (string !== 'undefined')
+            this.textArray.push(string);
     }
 
-    getFullText() {
+    getFullTextWithSpace() {
+        return this.textArray.join(' ');
+    }
+
+    getFullTextWithLine() {
         return this.textArray.join('\n');
     }
 
-    execute() {
-        console.log(this.getFullText());
-    }
-
-    toString() {
-        return this.getFullText();
+    static execute(text) {
+        console.log(text);
     }
 }
 
