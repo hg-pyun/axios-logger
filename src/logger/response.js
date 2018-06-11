@@ -6,10 +6,10 @@ function responseLogger(response) {
 
     const printer = new Printer();
 
-    printer.addLine(`${chalk.green(`[Response Helper] ${status}:${statusText}`)}`);
-    printer.addLine(`- data: ${JSON.stringify(data)}`);
+    printer.addText(`${chalk.green(`[Response Helper] ${status}:${statusText}`)}`);
+    printer.addText(`- data: ${JSON.stringify(data)}`);
 
-    printer.execute();
+    console.log(printer.getFullTextWithLine());
 
     return response;
 }

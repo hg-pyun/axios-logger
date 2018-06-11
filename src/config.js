@@ -1,17 +1,15 @@
 let config = {
-    requestType: 0,
-    responseType: 0,
-    errorType: 0
+    mode: 0
 };
 
 
-function getConfig() {
+function get() {
     return config;
 }
 
-function setConfig(newConfig) {
+function set(newConfig) {
     config = newConfig;
 }
 
-module.exports.getConfig = getConfig;
-module.exports.setConfig = setConfig;
+module.exports.get = get;
+module.exports.set = set;

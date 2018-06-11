@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
 
-AxiosLogger.config.setConfig({
-    responseType: 0
+AxiosLogger.config.set({
+    mode: 0
 });
 
 app.get('/get', (req, res, next) => {

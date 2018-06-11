@@ -1,21 +1,38 @@
 const chalk = require('chalk');
-const globalConfig = require('../config');
+const config = require('../config');
 const Printer = require('../utility/Printer');
 
 function requestLogger(axiosConfig) {
-    const {url, method, data, contentType, responseType} = axiosConfig;
+    const {url, method, data, headers, responseType} = axiosConfig;
 
-    console.log('config', globalConfig.getConfig());
-
+    // logging objects.
+    const globalConfig = config.get();
     const printer = new Printer();
 
-    printer.addLine(`${chalk.green(`[Request Helper] ${url}`)}`);
-    printer.addLine(`- method: ${method}`);
-    printer.addLine(`- contentType: ${contentType}`);
-    printer.addLine(`- responseType: ${responseType}`);
-    printer.addLine(`- data: ${JSON.stringify(data)}`);
+    // print informations.
+    const dateObj = new Date().toISOString();
+    const time = `[${dateObj.slice(0,10)} ${dateObj.slice(11, 19)}]`;
+    const methodMessage = `${chalk.yellow(`${method.toUpperCase()}`)}`;
+    const contentTypeMessage = `${headers['Content-Type']}`;
 
-    printer.execute();
+    if (globalConfig.mode === 0) {
+        printer.addText(`${chalk.green('[Axios Request]')}`);
+        printer.addText(time);
+        printer.addText(methodMessage);
+        printer.addText(`${url}`);
+        printer.addText(contentTypeMessage);
+
+        Printer.execute(printer.getFullTextWithSpace());
+    }
+    else {
+        printer.addText(`${chalk.green(`[Axios Request] ${time}$ {url}`)}`);
+        printer.addText(`- method: ${methodMessage}`);
+        printer.addText(`- contentType: ${contentTypeMessage}`);
+        printer.addText(`- responseType: ${responseType}`);
+        printer.addText(`- data: ${JSON.stringify(data)}`);
+
+        Printer.execute(printer.getFullTextWithLine());
+    }
 
     return axiosConfig;
 }
