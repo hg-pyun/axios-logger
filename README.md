@@ -26,6 +26,13 @@ import AxiosLogger from 'axios-logger';
 const instance = axios.create();
 instance.interceptors.request.use(AxiosLogger.responseLogger);
 ```
+If you want to use your custom interceptor, you can mixin with logger like this.
+```javascript
+instance.interceptors.request.use((config) => {
+    // write down your request intercept.
+    AxiosLogger.responseLogger(config);
+});
+```
 
 #### Error
 ```javascript
