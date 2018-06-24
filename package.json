@@ -31,7 +31,8 @@
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.1.6",
     "eslint": "^4.19.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "nodemon": "^1.17.5"
   },
   "dependencies": {
     "chalk": "^2.4.1"
