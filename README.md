@@ -4,6 +4,7 @@
 When you send a request in nodejs, you need to show the log to the console.
 This library display the necessary information while communicating with the server.
 
+![sample](https://user-images.githubusercontent.com/10627668/41816761-1700b662-77c8-11e8-80d4-7d223169364a.png)
 # Install
 ```
 $ npm install axios-logger --save-dev
@@ -41,7 +42,7 @@ instance.interceptors.request.use(AxiosLogger.responseLogger);
 If you want to use your custom interceptor, you can mixin with logger like this.
 ```javascript
 instance.interceptors.response.use((response) => {
-    // write down your request intercept.
+    // write down your response intercept.
     AxiosLogger.responseLogger(response);
 });
 ```
@@ -54,8 +55,16 @@ import AxiosLogger from 'axios-logger';
 
 const instance = axios.create();
 instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
-instance.interceptors.request.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
+instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
+```
+
+If you want to use your custom interceptor, you can mixin with logger like this.
+```javascript
+instance.interceptors.response.use(AxiosLogger.requestLogger, (err) =>{
+    // write down your error intercept.
+    AxiosLogger.errorLogger(err);
+});
 ```
 
 # CONTRIBUTE
-TBD.
+I always welcome Feedback and Pall Request :)
