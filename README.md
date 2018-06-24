@@ -17,7 +17,7 @@ $ npm install axios-logger --save-dev
 
 ## How to use
 
-You can use logger asj `axios` interceptor.
+You can use various loggers through the `axios`'s interceptor API.
 
 ### Logging Request
 
