@@ -27,6 +27,16 @@ app.get('/test/get', (req, res, next) => {
     });
 });
 
+app.get('/test/post', (req, res, next) => {
+    const instance = axios.create();
+    instance.interceptors.request.use(AxiosLogger.requestLogger);
+    instance.interceptors.response.use(AxiosLogger.responseLogger);
+
+    instance.post('http://localhost:3000/echo/post', {echo: 'hello'}).then((data) => {
+        res.json(200);
+    });
+});
+
 /**
  *  This is Local echo API for test url.
  *  /test/* -> /echo/*
@@ -34,7 +44,14 @@ app.get('/test/get', (req, res, next) => {
 app.get('/echo/get', (req, res, next) => {
     res.json({
         status: 200,
-        message: 'echo'
+        message: 'echo get'
+    });
+});
+
+app.post('/echo/post', (req, res, next) => {
+    res.json({
+        status: 200,
+        message: 'echo post'
     });
 });
 
