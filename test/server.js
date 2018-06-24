@@ -17,28 +17,25 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
 
-AxiosLogger.config.set({
-    mode: 0
-});
-
-app.get('/get', (req, res, next) => {
+app.get('/test/get', (req, res, next) => {
     const instance = axios.create();
     instance.interceptors.request.use(AxiosLogger.requestLogger);
+    instance.interceptors.response.use(AxiosLogger.responseLogger);
 
-    instance.get('http://localhost:3000/echo/get?echo=hello').then((data)=>{
+    instance.get('http://localhost:3000/echo/get?echo=hello').then((data) => {
         res.json(200);
     });
 });
 
-app.get('/echo/get', (req, res, next)=>{
+/**
+ *  This is Local echo API for test url.
+ *  /test/* -> /echo/*
+ */
+app.get('/echo/get', (req, res, next) => {
     res.json({
-        status: 201,
+        status: 200,
         message: 'echo'
     });
-});
-
-app.post('/post', (req, res, next) => {
-
 });
 
 process.on('SIGINT', function () {
