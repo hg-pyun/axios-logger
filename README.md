@@ -34,7 +34,7 @@ If you want to use your own interceptor, you can compose(mixin) with `requestLog
 ```javascript
 instance.interceptors.request.use((config) => {
     // write down your request intercept.
-    AxiosLogger.requestLogger(config);
+    return AxiosLogger.requestLogger(config);
 });
 ```
 
@@ -53,7 +53,7 @@ Also if you want to use your own interceptor, you can compose(mixin) with `respo
 ```javascript
 instance.interceptors.response.use((response) => {
     // write down your response intercept.
-    AxiosLogger.responseLogger(response);
+    return AxiosLogger.responseLogger(response);
 });
 ```
 
@@ -75,7 +75,7 @@ Also if you want to use your own interceptor, you can compose(mixin) with `error
 ```javascript
 instance.interceptors.response.use(AxiosLogger.requestLogger, (err) =>{
     // write down your error intercept.
-    AxiosLogger.errorLogger(err);
+    return AxiosLogger.errorLogger(err);
 });
 ```
 
