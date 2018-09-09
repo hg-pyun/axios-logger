@@ -45,7 +45,7 @@ import axios from 'axios';
 import AxiosLogger from 'axios-logger';
 
 const instance = axios.create();
-instance.interceptors.request.use(AxiosLogger.responseLogger);
+instance.interceptors.response.use(AxiosLogger.responseLogger);
 ```
 
 Also if you want to use your own interceptor, you can compose(mixin) with `responseLogger`.
