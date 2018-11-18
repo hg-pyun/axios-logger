@@ -37,6 +37,17 @@ app.get('/test/post', (req, res, next) => {
     });
 });
 
+app.get('/test/get/error', (req, res, next) => {
+    const instance = axios.create();
+    instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
+    instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
+
+    instance.get('http://localhost:3000/echo/notfound').catch(()=>{
+        res.send(404);
+    });
+});
+
+
 /**
  *  This is Local echo API for test url.
  *  /test/* -> /echo/*

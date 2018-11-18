@@ -1,14 +1,17 @@
 {
   "name": "axios-logger",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Beautify Axios Logging Messages",
   "main": "src/index.js",
   "keywords": [
     "javascript",
+    "nodejs",
+    "network",
     "axios",
     "http",
     "log",
-    "logger"
+    "logger",
+    "beautify"
   ],
   "repo,sitory": {
     "type": "git",
@@ -23,9 +26,6 @@
   "homepage": "https://github.com/hg-pyun/axios-intercept-logger#readme",
   "devDependencies": {
     "axios": "^0.18.0",
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.3",
-    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "cookie-parser": "^1.4.3",
@@ -37,14 +37,8 @@
   "dependencies": {
     "chalk": "^2.4.1"
   },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
   "scripts": {
     "dev": "nodemon --exec babel-node test/server.js",
-    "build": "cross-env BABEL_ENV=production npx babel ./src/index.js --out-file ./lib/axios-intercept-logger.js",
     "lint": "eslint --fix src/**"
   }
 }

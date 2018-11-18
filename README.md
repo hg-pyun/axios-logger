@@ -1,4 +1,7 @@
 # axios-logger
+[![npm](https://img.shields.io/npm/v/axios-logger.svg)](https://www.npmjs.com/package/axios-logger)
+[![npm](https://img.shields.io/npm/dm/axios-logger.svg)](https://www.npmjs.com/package/axios-logger)
+[![GitHub license](https://img.shields.io/github/license/hg-pyun/axios-logger.svg)](https://github.com/hg-pyun/axios-logger/blob/master/LICENSE)
 
 > Beautify Axios Logging Messages.
 
@@ -73,7 +76,7 @@ instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.error
 Also if you want to use your own interceptor, you can compose(mixin) with `errorLogger`.
 
 ```javascript
-instance.interceptors.response.use(AxiosLogger.requestLogger, (err) =>{
+instance.interceptors.response.use(AxiosLogger.responseLogger, (err) =>{
     // write down your error intercept.
     return AxiosLogger.errorLogger(err);
 });
