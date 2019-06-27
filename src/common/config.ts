@@ -1,0 +1,8 @@
+function setGlobalConfig() {
+
+}
+
+
+export {
+    setGlobalConfig
+}

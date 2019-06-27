@@ -4,7 +4,7 @@ import compression from 'compression';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import axios from 'axios';
-import AxiosLogger from '../src/index';
+import AxiosLogger from '../src';
 
 const app = new express();
 const server = http.Server(app);
@@ -13,8 +13,8 @@ const port = process.env.PORT || 3000;
 app.set('etag', false);
 app.set('x-powered-by', false);
 app.use(compression());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cookieParser());
 
 app.get('/test/get', (req, res, next) => {
@@ -32,7 +32,7 @@ app.get('/test/post', (req, res, next) => {
     instance.interceptors.request.use(AxiosLogger.requestLogger);
     instance.interceptors.response.use(AxiosLogger.responseLogger);
 
-    instance.post('http://localhost:3000/echo/post', {echo: 'hello'}).then((data) => {
+    instance.post('http://localhost:3000/echo/post', { echo: 'hello' }).then((data) => {
         res.json(200);
     });
 });
@@ -42,11 +42,10 @@ app.get('/test/get/error', (req, res, next) => {
     instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
     instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
 
-    instance.get('http://localhost:3000/echo/notfound').catch(()=>{
+    instance.get('http://localhost:3000/echo/notfound').catch(() => {
         res.send(404);
     });
 });
-
 
 /**
  *  This is Local echo API for test url.
@@ -55,22 +54,22 @@ app.get('/test/get/error', (req, res, next) => {
 app.get('/echo/get', (req, res, next) => {
     res.json({
         status: 200,
-        message: 'echo get'
+        message: 'echo get',
     });
 });
 
 app.post('/echo/post', (req, res, next) => {
     res.json({
         status: 200,
-        message: 'echo post'
+        message: 'echo post',
     });
 });
 
-process.on('SIGINT', function () {
-    server.on('close', function () {
+process.on('SIGINT', function() {
+    server.on('close', function() {
         process.exit(0);
     });
-    server.close(function () {
+    server.close(function() {
         console.log('Server closed.');
     });
 });
