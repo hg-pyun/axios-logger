@@ -1,44 +1,53 @@
 {
-  "name": "axios-logger",
-  "version": "1.0.0",
-  "description": "Beautify Axios Logging Messages",
-  "main": "src/index.js",
-  "keywords": [
-    "javascript",
-    "nodejs",
-    "network",
-    "axios",
-    "http",
-    "log",
-    "logger",
-    "beautify"
-  ],
-  "repo,sitory": {
-    "type": "git",
-    "url": "git+https://github.com/hg-pyun/axios-intercept-logger.git"
-  },
-  "author": "Haegul Pyun",
-  "email": "phg2491@gmail.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hg-pyun/axios-intercept-logger/issues"
-  },
-  "homepage": "https://github.com/hg-pyun/axios-intercept-logger#readme",
-  "devDependencies": {
-    "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
-    "compression": "^1.7.2",
-    "cookie-parser": "^1.4.3",
-    "cross-env": "^5.1.6",
-    "eslint": "^4.19.1",
-    "express": "^4.16.3",
-    "nodemon": "^1.17.5"
-  },
-  "dependencies": {
-    "chalk": "^2.4.1"
-  },
-  "scripts": {
-    "dev": "nodemon --exec babel-node test/server.js",
-    "lint": "eslint --fix src/**"
-  }
+    "name": "axios-logger",
+    "version": "1.0.0",
+    "description": "Beautify Axios Logging Messages",
+    "main": "src/index.js",
+    "keywords": [
+        "javascript",
+        "nodejs",
+        "network",
+        "axios",
+        "http",
+        "log",
+        "logger",
+        "beautify"
+    ],
+    "repo,sitory": {
+        "type": "git",
+        "url": "git+https://github.com/hg-pyun/axios-intercept-logger.git"
+    },
+    "author": "Haegul Pyun",
+    "email": "phg2491@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/hg-pyun/axios-intercept-logger/issues"
+    },
+    "homepage": "https://github.com/hg-pyun/axios-intercept-logger#readme",
+    "devDependencies": {
+        "axios": "^0.18.0",
+        "husky": "^2.4.1",
+        "jest": "^24.8.0",
+        "lint-staged": "^8.2.1",
+        "prettier": "^1.18.2",
+        "typescript": "^3.5.2"
+    },
+    "dependencies": {
+        "chalk": "^2.4.1"
+    },
+    "scripts": {
+        "dev": "nodemon --exec babel-node test/server.js",
+        "lint": "eslint --fix src/**"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,css,json,md}": [
+            "prettier --write",
+            "git add"
+        ]
+    }
 }
