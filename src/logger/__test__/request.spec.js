@@ -1,7 +1,6 @@
 import { requestLogger, setGlobalConfig } from '../../index';
 import { printLog } from '../../common/print';
 
-jest.mock('axios');
 jest.mock('../../common/print');
 
 const axiosRequestConfig = {
