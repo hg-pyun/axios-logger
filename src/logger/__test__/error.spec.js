@@ -6,6 +6,16 @@ jest.mock('../../common/print');
 
 const axiosError = {
     code: 500,
+    config: {
+        url: 'https://github.com/hg-pyun',
+        method: 'GET',
+    },
+    response: {
+        data: 'dummy data',
+        status: 500,
+        statusText: 'internal server error',
+        headers: '',
+    },
 };
 
 beforeEach(() => {
@@ -19,9 +29,18 @@ test('response should be return immutable axiosError', () => {
 });
 
 test('if config is undefined, logger make default log', () => {
+    const {
+        config: { url, method },
+        response: { data, status, statusText },
+    } = axiosError;
+
     errorLoggerWithoutPromise(axiosError);
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Error]'));
+    expect(printLog).toBeCalledWith(expect.stringContaining(url));
+    expect(printLog).toBeCalledWith(expect.stringContaining(method));
+    expect(printLog).toBeCalledWith(expect.stringContaining(`${status}:${statusText}`));
+    expect(printLog).toBeCalledWith(expect.stringContaining(data));
 });
 
 test('if global config is defined only, logger make log with options', () => {

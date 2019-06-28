@@ -37,6 +37,11 @@ class StringBuilder {
         return this;
     }
 
+    makeStatus(status?:number, statusText?: string) {
+        if(status && statusText) this.printQueue.push(`${status}:${statusText}`);
+        return this;
+    }
+
     build() {
         return this.printQueue.join(' ');
     }
