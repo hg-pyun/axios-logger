@@ -10,7 +10,7 @@ function setGlobalConfig(config: GlobalLogConfig) {
     globalConfig = config;
 }
 
-function mergeConfig(config: RequestLogConfig | ResponseLogConfig | ErrorLogConfig) {
+function getGlobalConfigWithMerge(config: RequestLogConfig | ResponseLogConfig | ErrorLogConfig) {
     return {
         ...globalConfig,
         ...config,
@@ -21,4 +21,5 @@ function mergeConfig(config: RequestLogConfig | ResponseLogConfig | ErrorLogConf
 export {
     getGlobalConfig,
     setGlobalConfig,
+    getGlobalConfigWithMerge,
 };
