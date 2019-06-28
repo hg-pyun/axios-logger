@@ -1,5 +1,7 @@
 export interface CommonConfig {
-    prefix?: string,
+    usePrefix?: boolean,
+    prefixText?: string,
+    useDate?: boolean,
     dateFormat?: string,
 }
 

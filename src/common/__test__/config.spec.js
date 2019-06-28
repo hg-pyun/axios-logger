@@ -1,32 +1,30 @@
-import { getGlobalConfig, getGlobalConfigWithMerge, setGlobalConfig } from '../config';
+import { getGlobalConfig, mergeWithGlobalConfig, setGlobalConfig } from '../config';
 
-describe('unit test', () => {
-    test('setGlobalConfig should set config. getGlobalConfig should return globalConfig object.', () => {
-        const globalConfig = {
-            data: true,
-            url: true,
-        };
+test('setGlobalConfig should set config. getGlobalConfig should return globalConfig object.', () => {
+    const globalConfig = {
+        data: true,
+        url: true,
+    };
 
-        setGlobalConfig(globalConfig);
-        expect(getGlobalConfig()).toEqual(globalConfig);
+    setGlobalConfig(globalConfig);
+    expect(getGlobalConfig()).toEqual(globalConfig);
+});
+
+test('mergeWithGlobalConfig should return merged with globalConfig object.', () => {
+    const globalConfig = {
+        data: true,
+        url: true,
+    };
+
+    setGlobalConfig(globalConfig);
+    const mergedConfig = mergeWithGlobalConfig({
+        dateFormat: 'hh:mm:ss',
+        data: false,
     });
 
-    test('getGlobalConfigWithMerge should return merged with globalConfig object.', () => {
-        const globalConfig = {
-            data: true,
-            url: true,
-        };
-
-        setGlobalConfig(globalConfig);
-        const mergedConfig = getGlobalConfigWithMerge({
-            dateFormat: 'hh:mm:ss',
-            data: false,
-        });
-
-        expect(mergedConfig).toEqual({
-            dateFormat: 'hh:mm:ss',
-            data: false,
-            url: true,
-        });
+    expect(mergedConfig).toEqual({
+        dateFormat: 'hh:mm:ss',
+        data: false,
+        url: true,
     });
 });
