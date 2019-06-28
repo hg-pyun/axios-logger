@@ -10,7 +10,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
 
     const stringBuilder = new StringBuilder(buildConfig);
     const log = stringBuilder
-        .makePrefix()
+        .makePrefix('Error')
         .makeDateFormat()
         .build();
 

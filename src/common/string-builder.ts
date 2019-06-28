@@ -10,8 +10,8 @@ class StringBuilder {
         this.printQueue = [];
     }
 
-    makePrefix() {
-        const prefix = this.config.prefixText ? this.config.prefixText : '[Axios Logger]';
+    makePrefix(logType: string) {
+        const prefix = this.config.prefixText ? `[${this.config.prefixText}][${logType}]` : `[Axios][${logType}]`;
         this.printQueue.push(prefix);
         return this;
     }
@@ -19,6 +19,16 @@ class StringBuilder {
     makeDateFormat() {
         const dateFormat = dateformat(new Date(), this.config.dateFormat || 'isoDateTime');
         this.printQueue.push(dateFormat);
+        return this;
+    }
+
+    makeUrl(url?: string) {
+        if(url) this.printQueue.push(url);
+        return this;
+    }
+
+    makeMethod(method?: string) {
+        if(method) this.printQueue.push(method.toUpperCase());
         return this;
     }
 

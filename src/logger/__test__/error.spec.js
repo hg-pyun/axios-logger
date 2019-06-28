@@ -21,7 +21,7 @@ test('response should be return immutable axiosError', () => {
 test('if config is undefined, logger make default log', () => {
     errorLoggerWithoutPromise(axiosError);
     expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[Axios Logger]'));
+    expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Error]'));
 });
 
 test('if global config is defined only, logger make log with options', () => {
