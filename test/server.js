@@ -1,10 +1,10 @@
-import http from 'http';
-import express from 'express';
-import compression from 'compression';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import axios from 'axios';
-import AxiosLogger from '../src';
+const http = require('http');
+const express = require('express');
+const compression = require('compression');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const axios = require('axios');
+const AxiosLogger = require('../lib/index');
 
 const app = new express();
 const server = http.Server(app);
@@ -43,7 +43,7 @@ app.get('/test/get/error', (req, res, next) => {
     instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
 
     instance.get('http://localhost:3000/echo/notfound').catch(() => {
-        res.send(404);
+        res.sendStatus(404);
     });
 });
 
