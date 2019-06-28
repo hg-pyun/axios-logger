@@ -5,6 +5,8 @@ jest.mock('../../common/print');
 
 const axiosRequestConfig = {
     data: 'dummy',
+    url: 'https://github.com/hg-pyun',
+    method: 'GET',
 };
 
 beforeEach(() => {
@@ -20,7 +22,9 @@ test('request should be return immutable AxiosRequestConfig', () => {
 test('if config is undefined, logger make default log', () => {
     requestLogger(axiosRequestConfig);
     expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[Axios Logger]'));
+    expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Request]'));
+    expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.url));
+    expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.method));
 });
 
 test('if global config is defined only, logger make log with options', () => {
