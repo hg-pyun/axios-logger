@@ -1,5 +1,6 @@
 import dateformat from 'dateformat';
 import { GlobalLogConfig } from './types';
+import chalk from 'chalk';
 
 class StringBuilder {
     private config: GlobalLogConfig;
@@ -12,7 +13,7 @@ class StringBuilder {
 
     makePrefix(logType: string) {
         const prefix = this.config.prefixText ? `[${this.config.prefixText}][${logType}]` : `[Axios][${logType}]`;
-        this.printQueue.push(prefix);
+        this.printQueue.push(chalk.green(prefix));
         return this;
     }
 
@@ -28,7 +29,7 @@ class StringBuilder {
     }
 
     makeMethod(method?: string) {
-        if(method) this.printQueue.push(method.toUpperCase());
+        if(method) this.printQueue.push(chalk.yellow(method.toUpperCase()));
         return this;
     }
 
