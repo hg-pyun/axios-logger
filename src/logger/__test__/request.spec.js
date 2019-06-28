@@ -4,7 +4,10 @@ import { printLog } from '../../common/print';
 jest.mock('../../common/print');
 
 const axiosRequestConfig = {
-    data: 'dummy',
+    data: {
+        id: 1,
+        text: 'this is dummy log',
+    },
     url: 'https://github.com/hg-pyun',
     method: 'GET',
 };
@@ -25,6 +28,7 @@ test('if config is undefined, logger make default log', () => {
     expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Request]'));
     expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.url));
     expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.method));
+    expect(printLog).toBeCalledWith(expect.stringContaining(JSON.stringify(axiosRequestConfig.data)));
 });
 
 test('if global config is defined only, logger make log with options', () => {

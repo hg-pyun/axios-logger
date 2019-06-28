@@ -6,7 +6,7 @@ import { printLog } from '../common/print';
 
 function requestLogger(request: AxiosRequestConfig, config?: RequestLogConfig) {
 
-    const {url, data, method} = request;
+    const {url, method, data} = request;
     const buildConfig = config ? config : mergeWithGlobalConfig(config);
 
     const stringBuilder = new StringBuilder(buildConfig);
@@ -15,6 +15,7 @@ function requestLogger(request: AxiosRequestConfig, config?: RequestLogConfig) {
         .makeDateFormat()
         .makeMethod(method)
         .makeUrl(url)
+        .makeData(data)
         .build();
 
     printLog(log);

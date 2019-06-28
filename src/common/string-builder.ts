@@ -32,6 +32,11 @@ class StringBuilder {
         return this;
     }
 
+    makeData(data: object) {
+        if(data) this.printQueue.push(JSON.stringify(data));
+        return this;
+    }
+
     build() {
         return this.printQueue.join(' ');
     }
