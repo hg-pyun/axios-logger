@@ -13,7 +13,6 @@
         "logger",
         "beautify",
         "library",
-        "ajax",
         "server"
     ],
     "repo,sitory": {
