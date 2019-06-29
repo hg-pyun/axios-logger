@@ -1,1 +1,1 @@
-describe('', () => {});
+test('string-builder', () => {});
