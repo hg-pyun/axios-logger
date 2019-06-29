@@ -11,7 +11,10 @@
         "http",
         "log",
         "logger",
-        "beautify"
+        "beautify",
+        "library",
+        "ajax",
+        "server"
     ],
     "repo,sitory": {
         "type": "git",
