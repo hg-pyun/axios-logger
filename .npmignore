@@ -1,5 +1,10 @@
 .idea
 /node_modules/
 /test/
-/.gitignore
 /tsconfig.json
+/src/
+/.circleci/
+/.github/
+/.prettierrc
+/.babelrc
+/.gitignore
