@@ -28,7 +28,7 @@ You can use various loggers through the `axios`'s interceptor API.
 
 ```javascript
 import axios from 'axios';
-import AxiosLogger from 'axios-logger';
+import * as AxiosLogger from 'axios-logger';
 
 const instance = axios.create();
 instance.interceptors.request.use(AxiosLogger.requestLogger);
@@ -47,7 +47,7 @@ instance.interceptors.request.use((config) => {
 
 ```javascript
 import axios from 'axios';
-import AxiosLogger from 'axios-logger';
+import * as AxiosLogger from 'axios-logger';
 
 const instance = axios.create();
 instance.interceptors.response.use(AxiosLogger.responseLogger);
@@ -68,7 +68,7 @@ You can inject `errorLogger` right after `requestLogger` or `responseLogger`.
 
 ```javascript
 import axios from 'axios';
-import AxiosLogger from 'axios-logger';
+import * as AxiosLogger from 'axios-logger';
 
 const instance = axios.create();
 instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
