@@ -66,3 +66,14 @@ test('if both global and local config are defined, local config should override 
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
 });
+
+test('if prefixText is false, remove prefix', () => {
+    const globalConfig = {
+        prefixText: false,
+    };
+
+    setGlobalConfig(globalConfig);
+    requestLogger(axiosRequestConfig);
+    expect(printLog).toHaveBeenCalled();
+    expect(printLog).toBeCalledWith(expect.not.stringContaining('[Axios]'));
+});

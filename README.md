@@ -84,6 +84,37 @@ instance.interceptors.response.use(AxiosLogger.responseLogger, (err) => {
 });
 ```
 
+## Configuration Settings
+
+You can adjust several features as desired through configuration file.
+If you want to set config globally, using `setGlobalConfig` method.
+
+```javascript
+setGlobalConfig({
+    prefixText: 'your prefix',
+    dateFormat: 'HH:MM:ss',
+    status: false,
+});
+```
+
+Or it can also be passed on as a second argument and applied locally.
+
+```javascript
+instance.interceptors.request.use((config) => {
+    // write down your request intercept.
+    return AxiosLogger.requestLogger(config, {
+        prefixText: 'your prefix',
+        dateFormat: 'HH:MM:ss',
+        status: false,
+    });
+});
+```
+
+#### Enable config list
+
+-   prefixText: string | false (default Axios)
+-   dateFormat: [dateformat](https://github.com/felixge/node-dateformat) | false (default isoDateTime)
+
 ## CONTRIBUTE
 
 I always welcome Feedback and Pull Request :)
