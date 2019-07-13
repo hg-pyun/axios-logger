@@ -1,8 +1,6 @@
 export interface CommonConfig {
-    usePrefix?: boolean;
-    prefixText?: string;
-    useDate?: boolean;
-    dateFormat?: string;
+    prefixText?: string | boolean;
+    dateFormat?: string | boolean;
 }
 export interface GlobalLogConfig extends CommonConfig {
     data?: boolean;
