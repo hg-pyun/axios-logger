@@ -11,13 +11,14 @@ class StringBuilder {
         this.printQueue = [];
     }
 
-    makePrefix(logType: string) {
-        const prefix = this.config.prefixText ? `[${this.config.prefixText}][${logType}]` : `[Axios][${logType}]`;
+    makePrefix(logType: string | false) {
+        const prefix = this.config.prefixText === false ? `[${logType}]` : `[${this.config.prefixText || 'Axios'}][${logType}]`;
         this.printQueue.push(chalk.green(prefix));
         return this;
     }
 
     makeDateFormat() {
+        // @ts-ignore
         const dateFormat = dateformat(new Date(), this.config.dateFormat || 'isoDateTime');
         this.printQueue.push(dateFormat);
         return this;
