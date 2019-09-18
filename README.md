@@ -37,9 +37,9 @@ instance.interceptors.request.use(AxiosLogger.requestLogger);
 If you want to use your own interceptor, you can compose(mixin) with `requestLogger`.
 
 ```javascript
-instance.interceptors.request.use((config) => {
+instance.interceptors.request.use((request) => {
     // write down your request intercept.
-    return AxiosLogger.requestLogger(config);
+    return AxiosLogger.requestLogger(request);
 });
 ```
 
@@ -100,9 +100,9 @@ setGlobalConfig({
 Or it can also be passed on as a second argument and applied locally.
 
 ```javascript
-instance.interceptors.request.use((config) => {
+instance.interceptors.request.use((request) => {
     // write down your request intercept.
-    return AxiosLogger.requestLogger(config, {
+    return AxiosLogger.requestLogger(request, {
         prefixText: 'your prefix',
         dateFormat: 'HH:MM:ss',
         status: false,
