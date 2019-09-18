@@ -18,7 +18,9 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cookieParser());
 
 app.get('/test/get', (req, res, next) => {
-    const instance = axios.create();
+    const instance = axios.create({
+        headers: { 'X-Custom-Header': 'foobar' },
+    });
     instance.interceptors.request.use(AxiosLogger.requestLogger);
     instance.interceptors.response.use(AxiosLogger.responseLogger);
 
@@ -52,6 +54,9 @@ app.get('/test/get/error', (req, res, next) => {
  *  /test/* -> /echo/*
  */
 app.get('/echo/get', (req, res, next) => {
+    res.set({
+        'X-Custom-Response': 'foobar',
+    });
     res.json({
         status: 200,
         message: 'echo get',
@@ -59,6 +64,9 @@ app.get('/echo/get', (req, res, next) => {
 });
 
 app.post('/echo/post', (req, res, next) => {
+    res.set({
+        'X-Custom-Response': 'foobar',
+    });
     res.json({
         status: 200,
         message: 'echo post',

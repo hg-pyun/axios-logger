@@ -8,11 +8,12 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
 
     const {config: {url, method}, response} = error;
 
-    let status, statusText, data;
+    let status, statusText, data, headers;
     if(response){
         status = response.status;
         statusText = response.statusText;
         data = response.data;
+        headers = response.headers;
     }
 
     const buildConfig = config ? config : mergeWithGlobalConfig(config);
@@ -24,6 +25,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
         .makeUrl(url)
         .makeMethod(method)
         .makeStatus(status, statusText)
+        .makeHeader(headers)
         .makeData(data)
         .build();
 
