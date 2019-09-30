@@ -94,6 +94,7 @@ setGlobalConfig({
     prefixText: 'your prefix',
     dateFormat: 'HH:MM:ss',
     status: false,
+    header: true,
 });
 ```
 
@@ -106,6 +107,7 @@ instance.interceptors.request.use((request) => {
         prefixText: 'your prefix',
         dateFormat: 'HH:MM:ss',
         status: false,
+        header: true,
     });
 });
 ```
@@ -114,6 +116,7 @@ instance.interceptors.request.use((request) => {
 
 -   prefixText: string | false (default Axios)
 -   dateFormat: [dateformat](https://github.com/felixge/node-dateformat) | false (default isoDateTime)
+-   header: boolean (default false)
 
 ## CONTRIBUTE
 
