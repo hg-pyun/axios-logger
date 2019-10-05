@@ -5,19 +5,19 @@ declare function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogCo
     data?: boolean | undefined;
     url?: boolean | undefined;
     method?: boolean | undefined;
-    headers?: boolean | undefined;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
     code?: boolean | undefined;
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
+    headers?: boolean | undefined;
 } | {
     data?: boolean | undefined;
     url?: boolean | undefined;
     method?: boolean | undefined;
-    headers?: boolean | undefined;
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
+    headers?: boolean | undefined;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
     code?: boolean | undefined;
@@ -25,9 +25,9 @@ declare function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogCo
     data?: boolean | undefined;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
-    headers?: boolean | undefined;
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
+    headers?: boolean | undefined;
     url?: boolean | undefined;
     method?: boolean | undefined;
     code?: boolean | undefined;
@@ -36,9 +36,9 @@ declare function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogCo
     code?: boolean | undefined;
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
+    headers?: boolean | undefined;
     url?: boolean | undefined;
     method?: boolean | undefined;
-    headers?: boolean | undefined;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
 };
