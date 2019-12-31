@@ -1,16 +1,24 @@
 import { ErrorLogConfig, GlobalLogConfig, RequestLogConfig, ResponseLogConfig } from './types';
 
-let globalConfig: GlobalLogConfig;
+let globalConfig: GlobalLogConfig = {
+    url: true,
+    method: true,
+    data: true,
+    status: true,
+};
 
 function getGlobalConfig() {
     return globalConfig;
 }
 
 function setGlobalConfig(config: GlobalLogConfig) {
-    globalConfig = config;
+    globalConfig = {
+        ...globalConfig,
+        ...config,
+    };
 }
 
-function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig) {
+function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig) {
     return {
         ...globalConfig,
         ...config,
@@ -20,5 +28,5 @@ function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogConfig | E
 export {
     getGlobalConfig,
     setGlobalConfig,
-    mergeWithGlobalConfig,
+    assembleBuildConfig,
 };

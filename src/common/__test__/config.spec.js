@@ -1,30 +1,46 @@
-import { getGlobalConfig, mergeWithGlobalConfig, setGlobalConfig } from '../config';
+import { getGlobalConfig, assembleBuildConfig, setGlobalConfig } from '../config';
+
+test('Default globalConfig properties should be all true', () => {
+    expect(getGlobalConfig()).toEqual({
+        url: true,
+        method: true,
+        data: true,
+        status: true,
+    });
+});
 
 test('setGlobalConfig should set config. getGlobalConfig should return globalConfig object.', () => {
     const globalConfig = {
         data: true,
-        url: true,
+        url: false,
     };
 
     setGlobalConfig(globalConfig);
-    expect(getGlobalConfig()).toEqual(globalConfig);
+    expect(getGlobalConfig()).toEqual({
+        url: false,
+        method: true,
+        data: true,
+        status: true,
+    });
 });
 
-test('mergeWithGlobalConfig should return merged with globalConfig object.', () => {
+test('assembleBuildConfig should return merged with globalConfig object.', () => {
     const globalConfig = {
         data: true,
         url: true,
     };
 
     setGlobalConfig(globalConfig);
-    const mergedConfig = mergeWithGlobalConfig({
+    const buildConfig = assembleBuildConfig({
         dateFormat: 'hh:mm:ss',
         data: false,
     });
 
-    expect(mergedConfig).toEqual({
+    expect(buildConfig).toEqual({
         dateFormat: 'hh:mm:ss',
-        data: false,
         url: true,
+        method: true,
+        data: false,
+        status: true,
     });
 });

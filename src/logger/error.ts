@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { ErrorLogConfig } from '../common/types';
-import { mergeWithGlobalConfig } from '../common/config';
+import { assembleBuildConfig } from '../common/config';
 import StringBuilder from '../common/string-builder';
 import { printLog } from '../common/print';
 
@@ -16,12 +16,12 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
         headers = response.headers;
     }
 
-    const buildConfig = config ? config : mergeWithGlobalConfig(config);
+    const buildConfig = assembleBuildConfig(config);
 
     const stringBuilder = new StringBuilder(buildConfig);
     const log = stringBuilder
-        .makePrefix('Error')
-        .makeDateFormat()
+        .makeLogTypeWithPrefix('Error')
+        .makeDateFormat(new Date())
         .makeUrl(url)
         .makeMethod(method)
         .makeStatus(status, statusText)

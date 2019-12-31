@@ -13,15 +13,15 @@ class StringBuilder {
         this.filteredHeaderList = ['common', 'delete', 'get', 'head', 'post', 'put', 'patch', 'content-type', 'content-length', 'vary', 'date', 'connection', 'content-security-policy'];
     }
 
-    makePrefix(logType: string | false) {
+    makeLogTypeWithPrefix(logType: string) {
         const prefix = this.config.prefixText === false ? `[${logType}]` : `[${this.config.prefixText || 'Axios'}][${logType}]`;
         this.printQueue.push(chalk.green(prefix));
         return this;
     }
 
-    makeDateFormat() {
+    makeDateFormat(date: Date) {
         // @ts-ignore
-        const dateFormat = dateformat(new Date(), this.config.dateFormat || 'isoDateTime');
+        const dateFormat = dateformat(date, this.config.dateFormat || 'isoDateTime');
         this.printQueue.push(dateFormat);
         return this;
     }
@@ -41,17 +41,17 @@ class StringBuilder {
     }
 
     makeUrl(url?: string) {
-        if(url) this.printQueue.push(url);
+        if(this.config.url && url) this.printQueue.push(url);
         return this;
     }
 
     makeMethod(method?: string) {
-        if(method) this.printQueue.push(chalk.yellow(method.toUpperCase()));
+        if(this.config.method && method) this.printQueue.push(chalk.yellow(method.toUpperCase()));
         return this;
     }
 
     makeData(data: object) {
-        if(data) this.printQueue.push(JSON.stringify(data));
+        if(this.config.data && data) this.printQueue.push(JSON.stringify(data));
         return this;
     }
 

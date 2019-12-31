@@ -7,6 +7,8 @@
 
 > Beautify Axios Logging Messages.
 
+![logo](https://user-images.githubusercontent.com/10627668/71610488-dbdd5c80-2bd4-11ea-8a8a-15c0328bba0b.png)
+
 When you send a request in nodejs, you need to show the log to the console.
 This library display the necessary information while communicating with the server.
 
@@ -114,6 +116,10 @@ instance.interceptors.request.use((request) => {
 
 #### Enable config list
 
+-   url: boolean (default true)
+-   method: boolean (default true)
+-   data: boolean (default true)
+-   status: boolean (default true)
 -   prefixText: string | false (default Axios)
 -   dateFormat: [dateformat](https://github.com/felixge/node-dateformat) | false (default isoDateTime)
 -   header: boolean (default false)
