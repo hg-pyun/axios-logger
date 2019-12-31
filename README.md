@@ -7,7 +7,7 @@
 
 > Beautify Axios Logging Messages.
 
-![logo](https://user-images.githubusercontent.com/10627668/71610415-31653980-2bd4-11ea-90af-cd50a50c57ea.png)
+![logo](https://user-images.githubusercontent.com/10627668/71610488-dbdd5c80-2bd4-11ea-8a8a-15c0328bba0b.png)
 
 When you send a request in nodejs, you need to show the log to the console.
 This library display the necessary information while communicating with the server.
