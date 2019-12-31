@@ -56,10 +56,7 @@ class StringBuilder {
     }
 
     makeStatus(status?:number, statusText?: string) {
-        const line = []
-        if(this.config.status && status) line.push(status)
-        if(this.config.statusText && statusText) line.push(statusText)
-        if(line.length) this.printQueue.push(line.join(':');
+        if(status && statusText) this.printQueue.push(`${status}:${statusText}`);
         return this;
     }
 

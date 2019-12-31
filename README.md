@@ -114,6 +114,10 @@ instance.interceptors.request.use((request) => {
 
 #### Enable config list
 
+-   url: boolean (default true)
+-   method: boolean (default true)
+-   data: boolean (default true)
+-   status: boolean (default true)
 -   prefixText: string | false (default Axios)
 -   dateFormat: [dateformat](https://github.com/felixge/node-dateformat) | false (default isoDateTime)
 -   header: boolean (default false)
