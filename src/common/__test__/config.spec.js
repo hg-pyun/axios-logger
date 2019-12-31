@@ -12,11 +12,16 @@ test('Default globalConfig properties should be all true', () => {
 test('setGlobalConfig should set config. getGlobalConfig should return globalConfig object.', () => {
     const globalConfig = {
         data: true,
-        url: true,
+        url: false,
     };
 
     setGlobalConfig(globalConfig);
-    expect(getGlobalConfig()).toEqual(globalConfig);
+    expect(getGlobalConfig()).toEqual({
+        url: false,
+        method: true,
+        data: true,
+        status: true,
+    });
 });
 
 test('assembleBuildConfig should return merged with globalConfig object.', () => {
@@ -33,7 +38,9 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
 
     expect(buildConfig).toEqual({
         dateFormat: 'hh:mm:ss',
-        data: false,
         url: true,
+        method: true,
+        data: false,
+        status: true,
     });
 });

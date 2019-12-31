@@ -12,7 +12,10 @@ function getGlobalConfig() {
 }
 
 function setGlobalConfig(config: GlobalLogConfig) {
-    globalConfig = config;
+    globalConfig = {
+        ...globalConfig,
+        ...config,
+    };
 }
 
 function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig) {
