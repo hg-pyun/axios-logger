@@ -1,7 +1,7 @@
 import { ErrorLogConfig, GlobalLogConfig, RequestLogConfig, ResponseLogConfig } from './types';
 declare function getGlobalConfig(): GlobalLogConfig;
 declare function setGlobalConfig(config: GlobalLogConfig): void;
-declare function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig): {
+declare function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig): {
     data?: boolean | undefined;
     url?: boolean | undefined;
     method?: boolean | undefined;
@@ -42,4 +42,4 @@ declare function mergeWithGlobalConfig(config?: RequestLogConfig | ResponseLogCo
     status?: boolean | undefined;
     statusText?: boolean | undefined;
 };
-export { getGlobalConfig, setGlobalConfig, mergeWithGlobalConfig, };
+export { getGlobalConfig, setGlobalConfig, assembleBuildConfig, };
