@@ -10,12 +10,12 @@ test('makeLogTypeWithPrefix should add prefix text', () => {
 
 test('makeDateFormat should add date', () => {
     const sb = new StringBuilder({
-        dateFormat: 'mm/dd/yyyy',
+        dateFormat: 'yyyy',
     });
     const date = new Date();
     const result = sb.makeDateFormat(date).build();
 
-    expect(result).toContain(date.toLocaleDateString());
+    expect(result).toContain(date.getFullYear());
 });
 
 test('makeHeaders should add headers', () => {
