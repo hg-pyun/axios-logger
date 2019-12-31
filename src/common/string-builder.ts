@@ -13,15 +13,15 @@ class StringBuilder {
         this.filteredHeaderList = ['common', 'delete', 'get', 'head', 'post', 'put', 'patch', 'content-type', 'content-length', 'vary', 'date', 'connection', 'content-security-policy'];
     }
 
-    makePrefix(logType: string | false) {
+    makeLogTypeWithPrefix(logType: string) {
         const prefix = this.config.prefixText === false ? `[${logType}]` : `[${this.config.prefixText || 'Axios'}][${logType}]`;
         this.printQueue.push(chalk.green(prefix));
         return this;
     }
 
-    makeDateFormat() {
+    makeDateFormat(date: Date) {
         // @ts-ignore
-        const dateFormat = dateformat(new Date(), this.config.dateFormat || 'isoDateTime');
+        const dateFormat = dateformat(date, this.config.dateFormat || 'isoDateTime');
         this.printQueue.push(dateFormat);
         return this;
     }

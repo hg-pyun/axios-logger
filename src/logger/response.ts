@@ -10,8 +10,8 @@ function responseLogger(response: AxiosResponse, config?: ResponseLogConfig) {
 
     const stringBuilder = new StringBuilder(buildConfig);
     const log = stringBuilder
-        .makePrefix('Response')
-        .makeDateFormat()
+        .makeLogTypeWithPrefix('Response')
+        .makeDateFormat(new Date())
         .makeUrl(url)
         .makeMethod(method)
         .makeStatus(status, statusText)
