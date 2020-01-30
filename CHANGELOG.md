@@ -4,6 +4,7 @@
 
 -   Fix `headers` config typo
 -   Add change log
+-   Add contribute guide
 
 ## 2.3.0
 
