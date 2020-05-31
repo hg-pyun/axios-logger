@@ -5,7 +5,7 @@ import StringBuilder from '../common/string-builder';
 import { printLog } from '../common/print';
 
 function responseLogger(response: AxiosResponse, config?: ResponseLogConfig) {
-    const {config: {url, method}, status, statusText, data, headers} = response;
+    const {url, method, status, statusText, data, headers} = response;
     const buildConfig = assembleBuildConfig(config);
 
     const stringBuilder = new StringBuilder(buildConfig);
