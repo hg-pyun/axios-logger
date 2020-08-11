@@ -6,10 +6,10 @@ import { printLog } from '../common/print';
 
 function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
 
-    const {config: {url, method}, response} = error;
+    const {config: { method, url }, response} = error;
 
     let status, statusText, data, headers;
-    if(response){
+    if (response) {
         status = response.status;
         statusText = response.statusText;
         data = response.data;
@@ -22,8 +22,8 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
     const log = stringBuilder
         .makeLogTypeWithPrefix('Error')
         .makeDateFormat(new Date())
-        .makeUrl(url)
         .makeMethod(method)
+        .makeUrl(url)
         .makeStatus(status, statusText)
         .makeHeader(headers)
         .makeData(data)

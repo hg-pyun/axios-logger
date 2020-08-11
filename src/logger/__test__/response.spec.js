@@ -35,8 +35,8 @@ test('if config is undefined, logger make default log', () => {
     responseLogger(axiosResponse);
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Response]'));
-    expect(printLog).toBeCalledWith(expect.stringContaining(url));
     expect(printLog).toBeCalledWith(expect.stringContaining(method));
+    expect(printLog).toBeCalledWith(expect.stringContaining(url));
     expect(printLog).toBeCalledWith(expect.stringContaining(`${status}:${statusText}`));
     expect(printLog).toBeCalledWith(expect.stringContaining(data));
 });
