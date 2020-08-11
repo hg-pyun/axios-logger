@@ -18,6 +18,16 @@ test('makeDateFormat should add date', () => {
     expect(result).toContain(date.getFullYear());
 });
 
+test('makeDateFormat with dateFormat = false, does not add the timestamp', () => {
+    const sb = new StringBuilder({
+        dateFormat: false,
+    });
+    const date = new Date();
+    const result = sb.makeDateFormat(date).build();
+
+    expect(result).toBe('');
+});
+
 test('makeHeaders should add headers', () => {
     const sb = new StringBuilder({
         headers: true,

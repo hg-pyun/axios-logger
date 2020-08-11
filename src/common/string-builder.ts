@@ -20,9 +20,12 @@ class StringBuilder {
     }
 
     makeDateFormat(date: Date) {
-        // @ts-ignore
-        const dateFormat = dateformat(date, this.config.dateFormat || 'isoDateTime');
-        this.printQueue.push(dateFormat);
+        // allow for opting-out of adding the timestamp (as most loggers already add this)
+        if (this.config.dateFormat !== false) {
+            // @ts-ignore
+            const dateFormat = dateformat(date, this.config.dateFormat || 'isoDateTime');
+            this.printQueue.push(dateFormat);
+        }
         return this;
     }
 
