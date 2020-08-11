@@ -1,11 +1,15 @@
 import { getGlobalConfig, assembleBuildConfig, setGlobalConfig } from '../config';
 
-test('Default globalConfig properties should be all true', () => {
+const DEFAULT_PREFIX = 'Axios';
+
+test('Default globalConfig properties should match the expected (and documented) values', () => {
     expect(getGlobalConfig()).toEqual({
         method: true,
         url: true,
         data: true,
         status: true,
+        prefixText: DEFAULT_PREFIX,
+        headers: false,
     });
 });
 
@@ -21,6 +25,8 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
         url: false,
         data: true,
         status: true,
+        prefixText: DEFAULT_PREFIX,
+        headers: false,
     });
 });
 
@@ -42,5 +48,7 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
         url: true,
         data: false,
         status: true,
+        prefixText: DEFAULT_PREFIX,
+        headers: false,
     });
 });

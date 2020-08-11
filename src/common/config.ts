@@ -5,6 +5,8 @@ let globalConfig: GlobalLogConfig = {
     url: true,
     data: true,
     status: true,
+    prefixText: 'Axios',
+    headers: false,
 };
 
 function getGlobalConfig() {
