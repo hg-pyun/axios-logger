@@ -1,5 +1,7 @@
+import { getGlobalConfig } from './config';
+
 function printLog (text: string) {
-    console.log(text);
+    getGlobalConfig().logger.info(text);
 }
 
 export {

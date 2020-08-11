@@ -2,6 +2,7 @@ export interface CommonConfig {
     prefixText?: string | boolean,
     dateFormat?: string | boolean,
     headers?: boolean,
+    logger: any,
 }
 
 export interface GlobalLogConfig extends CommonConfig {
