@@ -8,8 +8,8 @@ const axiosRequestConfig = {
         id: 1,
         text: 'this is dummy log',
     },
-    url: 'https://github.com/hg-pyun',
     method: 'GET',
+    url: 'https://github.com/hg-pyun',
 };
 
 beforeEach(() => {
@@ -26,8 +26,8 @@ test('if config is undefined, logger make default log', () => {
     requestLogger(axiosRequestConfig);
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Request]'));
-    expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.url));
     expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.method));
+    expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.url));
     expect(printLog).toBeCalledWith(expect.stringContaining(JSON.stringify(axiosRequestConfig.data)));
 });
 

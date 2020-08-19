@@ -7,8 +7,8 @@ jest.mock('../../common/print');
 const axiosError = {
     code: 500,
     config: {
-        url: 'https://github.com/hg-pyun',
         method: 'GET',
+        url: 'https://github.com/hg-pyun',
     },
     response: {
         data: 'dummy data',
@@ -37,8 +37,8 @@ test('if config is undefined, logger make default log', () => {
     errorLoggerWithoutPromise(axiosError);
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Error]'));
-    expect(printLog).toBeCalledWith(expect.stringContaining(url));
     expect(printLog).toBeCalledWith(expect.stringContaining(method));
+    expect(printLog).toBeCalledWith(expect.stringContaining(url));
     expect(printLog).toBeCalledWith(expect.stringContaining(`${status}:${statusText}`));
     expect(printLog).toBeCalledWith(expect.stringContaining(data));
 });

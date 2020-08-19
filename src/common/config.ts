@@ -1,8 +1,8 @@
 import { ErrorLogConfig, GlobalLogConfig, RequestLogConfig, ResponseLogConfig } from './types';
 
 let globalConfig: GlobalLogConfig = {
-    url: true,
     method: true,
+    url: true,
     data: true,
     status: true,
 };

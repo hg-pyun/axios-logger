@@ -6,8 +6,8 @@ export interface CommonConfig {
 
 export interface GlobalLogConfig extends CommonConfig {
     data?: boolean,
-    url?: boolean,
     method?: boolean,
+    url?: boolean,
     status?: boolean,
     statusText?: boolean,
     code?: boolean,
@@ -15,8 +15,8 @@ export interface GlobalLogConfig extends CommonConfig {
 
 export interface RequestLogConfig extends CommonConfig {
     data?: boolean,
-    url?: boolean,
     method?: boolean,
+    url?: boolean,
 }
 
 export interface ResponseLogConfig extends CommonConfig {
