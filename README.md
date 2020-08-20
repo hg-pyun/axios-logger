@@ -116,8 +116,8 @@ instance.interceptors.request.use((request) => {
 
 #### Enable config list
 
--   url: boolean (default true)
 -   method: boolean (default true)
+-   url: boolean (default true)
 -   data: boolean (default true)
 -   status: boolean (default true)
 -   prefixText: string | false (default Axios)

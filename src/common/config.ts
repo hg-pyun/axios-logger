@@ -6,6 +6,7 @@ let globalConfig: GlobalLogConfig = {
     data: true,
     status: true,
     prefixText: 'Axios',
+    dateFormat: false,
     headers: false,
 };
 
