@@ -5,7 +5,7 @@ let globalConfig: GlobalLogConfig = {
     url: true,
     data: true,
     status: true,
-    logger: console,
+    logger: console.log,
 };
 
 function getGlobalConfig() {

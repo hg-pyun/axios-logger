@@ -1,6 +1,6 @@
 import { getGlobalConfig, assembleBuildConfig, setGlobalConfig } from '../config';
 
-const customDummyLoggerFunction = (msg => console.log(msg));
+const customLoggerFunction = console.info;
 
 test('Default globalConfig properties should be all true + console should be the logger', () => {
     expect(getGlobalConfig()).toEqual({
@@ -8,7 +8,7 @@ test('Default globalConfig properties should be all true + console should be the
         url: true,
         data: true,
         status: true,
-        logger: console,
+        logger: console.log,
     });
 });
 
@@ -16,7 +16,7 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
     const globalConfig = {
         data: true,
         url: false,
-        logger: customDummyLoggerFunction,
+        logger: customLoggerFunction,
     };
 
     setGlobalConfig(globalConfig);
@@ -25,7 +25,7 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
         url: false,
         data: true,
         status: true,
-        logger: customDummyLoggerFunction,
+        logger: customLoggerFunction,
     });
 });
 
@@ -33,7 +33,7 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
     const globalConfig = {
         data: true,
         url: true,
-        logger: console,
+        logger: console.log,
     };
 
     setGlobalConfig(globalConfig);
@@ -48,6 +48,6 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
         url: true,
         data: false,
         status: true,
-        logger: console,
+        logger: console.log,
     });
 });
