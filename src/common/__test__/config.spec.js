@@ -9,6 +9,9 @@ test('Default globalConfig properties should be all true + console should be the
         data: true,
         status: true,
         logger: console.log,
+        dateFormat: false,
+        prefixText: DEFAULT_PREFIX,
+        headers: false,
     });
 });
 
@@ -26,6 +29,9 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
         data: true,
         status: true,
         logger: customLoggerFunction,
+        dateFormat: false,
+        prefixText: DEFAULT_PREFIX,
+        headers: false,
     });
 });
 
@@ -43,11 +49,13 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
     });
 
     expect(buildConfig).toEqual({
-        dateFormat: 'hh:mm:ss',
         method: true,
         url: true,
         data: false,
         status: true,
         logger: console.log,
+        dateFormat: 'hh:mm:ss',
+        prefixText: DEFAULT_PREFIX,
+        headers: false,
     });
 });
