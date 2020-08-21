@@ -116,13 +116,17 @@ instance.interceptors.request.use((request) => {
 
 #### Enable config list
 
--   method: boolean (default true)
--   url: boolean (default true)
--   data: boolean (default true)
--   status: boolean (default true)
--   prefixText: string | false (default Axios)
--   dateFormat: [dateformat](https://github.com/felixge/node-dateformat) | false (default isoDateTime)
--   headers: boolean (default false)
+| Property     | Type   | Default | Description                            |
+|--------------|--------|---------|----------------------------------------|
+| `method`     | boolean | `true` | Whether to include HTTP method or not. |
+| `url`        | boolean | `true` | Whether to include the URL or not.     |
+| `data`       | boolean | `true` | Whether to include request/response data or not. |
+| `status`     | boolean | `true` | Whether to include response statuses or not. |
+| `headers`    | boolean | `false` | Whether to include HTTP headers or not. |
+| `prefixText` | string \| `false` | `'Axios'` | `false` => no prefix, otherwise, customize the prefix wanted. |
+| `dateFormat` | [dateformat](https://github.com/felixge/node-dateformat) \| `false` | `new Date().toISOString()` | `false` => no timestamp, otherwise, customize its format |
+| `logger`     | function<string, any> | `console.log` | Allows users to customize the logger function to be used. e.g. Winston's `logger.info` could be leveraged |
+
 
 ## CONTRIBUTE
 
