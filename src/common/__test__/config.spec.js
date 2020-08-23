@@ -1,5 +1,6 @@
 import { getGlobalConfig, assembleBuildConfig, setGlobalConfig } from '../config';
 
+const DEFAULT_PREFIX = 'axios';
 const customLoggerFunction = console.info;
 
 test('Default globalConfig properties should be all true + console should be the logger', () => {
