@@ -3,21 +3,23 @@ declare function getGlobalConfig(): GlobalLogConfig;
 declare function setGlobalConfig(config: GlobalLogConfig): void;
 declare function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig): {
     data?: boolean | undefined;
-    url?: boolean | undefined;
     method?: boolean | undefined;
+    url?: boolean | undefined;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
     code?: boolean | undefined;
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
     headers?: boolean | undefined;
+    logger: (text: string) => any;
 } | {
     data?: boolean | undefined;
-    url?: boolean | undefined;
     method?: boolean | undefined;
+    url?: boolean | undefined;
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
     headers?: boolean | undefined;
+    logger: (text: string) => any;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
     code?: boolean | undefined;
@@ -28,8 +30,9 @@ declare function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConf
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
     headers?: boolean | undefined;
-    url?: boolean | undefined;
+    logger: (text: string) => any;
     method?: boolean | undefined;
+    url?: boolean | undefined;
     code?: boolean | undefined;
 } | {
     data?: boolean | undefined;
@@ -37,8 +40,9 @@ declare function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConf
     prefixText?: string | boolean | undefined;
     dateFormat?: string | boolean | undefined;
     headers?: boolean | undefined;
-    url?: boolean | undefined;
+    logger: (text: string) => any;
     method?: boolean | undefined;
+    url?: boolean | undefined;
     status?: boolean | undefined;
     statusText?: boolean | undefined;
 };
