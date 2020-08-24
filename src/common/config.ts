@@ -5,6 +5,7 @@ let globalConfig: GlobalLogConfig = {
     url: true,
     data: true,
     status: true,
+    logger: console.log,
     prefixText: 'Axios',
     dateFormat: false,
     headers: false,
