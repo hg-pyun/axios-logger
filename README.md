@@ -97,10 +97,12 @@ setGlobalConfig({
     dateFormat: 'HH:MM:ss',
     status: false,
     headers: true,
+    logger: someLogger.info.bind(this),
 });
 ```
 
-Or it can also be passed on as a second argument and applied locally.
+Or it can also be passed on as a second argument and applied locally. In this case, any property explicitly defined will
+override the global configuration.
 
 ```javascript
 instance.interceptors.request.use((request) => {
@@ -110,23 +112,23 @@ instance.interceptors.request.use((request) => {
         dateFormat: 'HH:MM:ss',
         status: false,
         headers: true,
+        logger: someLogger.error.bind(this),
     });
 });
 ```
 
 #### Enable config list
 
-| Property     | Type   | Default | Description                            |
-|--------------|--------|---------|----------------------------------------|
-| `method`     | boolean | `true` | Whether to include HTTP method or not. |
-| `url`        | boolean | `true` | Whether to include the URL or not.     |
-| `data`       | boolean | `true` | Whether to include request/response data or not. |
-| `status`     | boolean | `true` | Whether to include response statuses or not. |
-| `headers`    | boolean | `false` | Whether to include HTTP headers or not. |
-| `prefixText` | string \| `false` | `'Axios'` | `false` => no prefix, otherwise, customize the prefix wanted. |
-| `dateFormat` | [dateformat](https://github.com/felixge/node-dateformat) \| `false` | `new Date().toISOString()` | `false` => no timestamp, otherwise, customize its format |
-| `logger`     | function<string, any> | `console.log` | Allows users to customize the logger function to be used. e.g. Winston's `logger.info` could be leveraged |
-
+| Property     | Type                                                                | Default                    | Description                                                                                                                                    |
+| ------------ | ------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `method`     | boolean                                                             | `true`                     | Whether to include HTTP method or not.                                                                                                         |
+| `url`        | boolean                                                             | `true`                     | Whether to include the URL or not.                                                                                                             |
+| `data`       | boolean                                                             | `true`                     | Whether to include request/response data or not.                                                                                               |
+| `status`     | boolean                                                             | `true`                     | Whether to include response statuses or not.                                                                                                   |
+| `headers`    | boolean                                                             | `false`                    | Whether to include HTTP headers or not.                                                                                                        |
+| `prefixText` | string \| `false`                                                   | `'Axios'`                  | `false` => no prefix, otherwise, customize the prefix wanted.                                                                                  |
+| `dateFormat` | [dateformat](https://github.com/felixge/node-dateformat) \| `false` | `new Date().toISOString()` | `false` => no timestamp, otherwise, customize its format                                                                                       |
+| `logger`     | function<string, any>                                               | `console.log`              | Allows users to customize the logger function to be used. e.g. Winston's `logger.info` could be leveraged, like this: `logger.info.bind(this)` |
 
 ## CONTRIBUTE
 
