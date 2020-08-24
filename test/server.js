@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
 const AxiosLogger = require('../lib/index');
+const { setGlobalConfig } = require('../lib/common/config');
 
 const app = new express();
 const server = http.Server(app);
@@ -16,6 +17,10 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cookieParser());
+
+setGlobalConfig({
+    logger: console.info,
+});
 
 app.get('/test/get', (req, res, next) => {
     const instance = axios.create({
