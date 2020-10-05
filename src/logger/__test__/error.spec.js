@@ -1,5 +1,5 @@
 import { setGlobalConfig } from '../../index';
-import { printLog } from '../../common/print';
+import { printError } from '../../common/print';
 import { errorLoggerWithoutPromise } from '../error';
 
 jest.mock('../../common/print');
@@ -19,7 +19,7 @@ const axiosError = {
 };
 
 beforeEach(() => {
-    printLog.mockClear();
+    printError.mockClear();
 });
 
 test('response should be return immutable axiosError', () => {
@@ -35,12 +35,12 @@ test('if config is undefined, logger make default log', () => {
     } = axiosError;
 
     errorLoggerWithoutPromise(axiosError);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Error]'));
-    expect(printLog).toBeCalledWith(expect.stringContaining(method));
-    expect(printLog).toBeCalledWith(expect.stringContaining(url));
-    expect(printLog).toBeCalledWith(expect.stringContaining(`${status}:${statusText}`));
-    expect(printLog).toBeCalledWith(expect.stringContaining(data));
+    expect(printError).toHaveBeenCalled();
+    expect(printError).toBeCalledWith(expect.stringContaining('[Axios][Error]'));
+    expect(printError).toBeCalledWith(expect.stringContaining(method));
+    expect(printError).toBeCalledWith(expect.stringContaining(url));
+    expect(printError).toBeCalledWith(expect.stringContaining(`${status}:${statusText}`));
+    expect(printError).toBeCalledWith(expect.stringContaining(data));
 });
 
 test('if global config is defined only, logger make log with options', () => {
@@ -50,8 +50,8 @@ test('if global config is defined only, logger make log with options', () => {
 
     setGlobalConfig(globalConfig);
     errorLoggerWithoutPromise(axiosError);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[global custom prefix]'));
+    expect(printError).toHaveBeenCalled();
+    expect(printError).toBeCalledWith(expect.stringContaining('[global custom prefix]'));
 });
 
 test('if local config is defined only, logger make log with options', () => {
@@ -60,8 +60,8 @@ test('if local config is defined only, logger make log with options', () => {
     };
 
     errorLoggerWithoutPromise(axiosError, localConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
+    expect(printError).toHaveBeenCalled();
+    expect(printError).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
 });
 
 test('if both global and local config are defined, local config should override global config', () => {
@@ -75,8 +75,8 @@ test('if both global and local config are defined, local config should override 
 
     setGlobalConfig(globalConfig);
     errorLoggerWithoutPromise(axiosError, localConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
+    expect(printError).toHaveBeenCalled();
+    expect(printError).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
 });
 
 test('if prefixText is false, remove prefix', () => {
@@ -86,6 +86,6 @@ test('if prefixText is false, remove prefix', () => {
 
     setGlobalConfig(globalConfig);
     errorLoggerWithoutPromise(axiosError);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.not.stringContaining('[Axios]'));
+    expect(printError).toHaveBeenCalled();
+    expect(printError).toBeCalledWith(expect.not.stringContaining('[Axios]'));
 });

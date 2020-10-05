@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { ErrorLogConfig } from '../common/types';
 import { assembleBuildConfig } from '../common/config';
 import StringBuilder from '../common/string-builder';
-import { printLog } from '../common/print';
+import { printError } from '../common/print';
 
 function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
 
@@ -29,7 +29,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
         .makeData(data)
         .build();
 
-    printLog(log);
+    printError(log);
 
     return error;
 }

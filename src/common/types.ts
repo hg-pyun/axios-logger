@@ -2,7 +2,14 @@ export interface CommonConfig {
     prefixText?: string | boolean,
     dateFormat?: string | boolean,
     headers?: boolean,
-    logger: (text: string) => any,
+    logger: {
+        log: (message?: any) => any,
+        debug: (message?: any) => any,
+        error: (message?: any) => any,
+        assert: (message?: any) => any,
+        trace: (message?: any) => any,
+        warn: (message?: any) => any,
+    },
 }
 
 export interface GlobalLogConfig extends CommonConfig {
