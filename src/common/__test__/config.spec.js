@@ -9,10 +9,12 @@ test('Default globalConfig properties should be all true + console should be the
         url: true,
         data: true,
         status: true,
+        statusText: true,
         logger: console.log,
         dateFormat: false,
         prefixText: DEFAULT_PREFIX,
         headers: false,
+        code: false,
     });
 });
 
@@ -29,10 +31,12 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
         url: false,
         data: true,
         status: true,
+        statusText: true,
         logger: customLoggerFunction,
         dateFormat: false,
         prefixText: DEFAULT_PREFIX,
         headers: false,
+        code: false,
     });
 });
 
@@ -54,9 +58,11 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
         url: true,
         data: false,
         status: true,
+        statusText: true,
         logger: console.log,
         dateFormat: 'hh:mm:ss',
         prefixText: DEFAULT_PREFIX,
         headers: false,
+        code: false,
     });
 });

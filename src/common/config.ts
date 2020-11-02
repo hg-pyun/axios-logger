@@ -1,14 +1,16 @@
 import { ErrorLogConfig, GlobalLogConfig, RequestLogConfig, ResponseLogConfig } from './types';
 
-let globalConfig: GlobalLogConfig = {
+let globalConfig: Required<GlobalLogConfig> = {
     method: true,
     url: true,
     data: true,
     status: true,
+    statusText: true,
     logger: console.log,
     prefixText: 'Axios',
     dateFormat: false,
     headers: false,
+    code: false,
 };
 
 function getGlobalConfig() {
