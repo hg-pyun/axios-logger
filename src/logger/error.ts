@@ -34,8 +34,8 @@ function errorLoggerWithoutPromise(error: AxiosError, config?: ErrorLogConfig) {
     return error;
 }
 
-function errorLogger(error: AxiosError) {
-    return Promise.reject(errorLoggerWithoutPromise(error));
+function errorLogger(error: AxiosError, config?: ErrorLogConfig) {
+    return Promise.reject(errorLoggerWithoutPromise(error, config));
 }
 
 export { errorLogger, errorLoggerWithoutPromise };
