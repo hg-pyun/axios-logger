@@ -23,7 +23,7 @@ function setGlobalConfig(config: GlobalLogConfig) {
     };
 }
 
-function assembleBuildConfig(config?: RequestLogConfig | ResponseLogConfig | ErrorLogConfig) {
+function assembleBuildConfig(config: RequestLogConfig | ResponseLogConfig | ErrorLogConfig): Required<GlobalLogConfig> {
     return {
         ...globalConfig,
         ...config,
