@@ -72,6 +72,7 @@
         "test": "jest --silent",
         "test:watch": "jest --watchAll",
         "test:server": "node ./test/server.js",
-        "deploy": "npm test && npm run build && npm publish"
+        "prepare": "npm run build",
+        "deploy": "npm test && npm publish"
     }
 }
