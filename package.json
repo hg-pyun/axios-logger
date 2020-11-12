@@ -17,15 +17,15 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/hg-pyun/axios-intercept-logger.git"
+        "url": "git+https://github.com/hg-pyun/axios-logger.git"
     },
     "author": "Haegul Pyun",
     "email": "phg2491@gmail.com",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/hg-pyun/axios-intercept-logger/issues"
+        "url": "https://github.com/hg-pyun/axios-logger/issues"
     },
-    "homepage": "https://github.com/hg-pyun/axios-intercept-logger#readme",
+    "homepage": "https://github.com/hg-pyun/axios-logger#readme",
     "devDependencies": {
         "@babel/cli": "^7.7.7",
         "@babel/core": "^7.7.7",
