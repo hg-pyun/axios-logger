@@ -1,6 +1,6 @@
 import { ErrorLogConfig, GlobalLogConfig, RequestLogConfig, ResponseLogConfig } from './types';
 
-let globalConfig: GlobalLogConfig = {
+export let globalConfig: GlobalLogConfig = {
     method: true,
     url: true,
     data: true,

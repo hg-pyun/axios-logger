@@ -1,7 +1,10 @@
 import { requestLogger, setGlobalConfig } from '../../index';
-import { printLog } from '../../common/print';
 
-jest.mock('../../common/print');
+import { globalConfig } from '../../common/config';
+import { toCalledWith, toNotCalledWith } from './testUtil';
+
+const printLog = jest.fn();
+const clonedGlobalConfig = { ...globalConfig, ...{ logger: printLog } };
 
 const axiosRequestConfig = {
     data: {
@@ -12,68 +15,85 @@ const axiosRequestConfig = {
     url: 'https://github.com/hg-pyun',
 };
 
-beforeEach(() => {
-    printLog.mockClear();
-});
+describe('RequestLogger', () => {
+    beforeEach(() => {
+        printLog.mockClear();
+        setGlobalConfig(clonedGlobalConfig);
+    });
 
-test('request should be return immutable AxiosRequestConfig', () => {
-    const mockLogger = jest.fn(requestLogger);
-    mockLogger(axiosRequestConfig);
-    expect(mockLogger).toReturnWith(axiosRequestConfig);
-});
+    test('request should be return immutable AxiosRequestConfig', () => {
+        const mockLogger = jest.fn(requestLogger);
+        mockLogger(axiosRequestConfig);
+        expect(mockLogger).toReturnWith(axiosRequestConfig);
+    });
 
-test('if config is undefined, logger make default log', () => {
-    requestLogger(axiosRequestConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[Axios][Request]'));
-    expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.method));
-    expect(printLog).toBeCalledWith(expect.stringContaining(axiosRequestConfig.url));
-    expect(printLog).toBeCalledWith(expect.stringContaining(JSON.stringify(axiosRequestConfig.data)));
-});
+    test('if config is undefined, logger make default log', () => {
+        requestLogger(axiosRequestConfig);
 
-test('if global config is defined only, logger make log with options', () => {
-    const globalConfig = {
-        prefixText: '[global custom prefix]',
-    };
+        expect(printLog).toHaveBeenCalled();
+        toCalledWith(printLog, '[Axios][Request]');
+        toCalledWith(printLog, axiosRequestConfig.method);
+        toCalledWith(printLog, axiosRequestConfig.url);
+        toCalledWith(printLog, JSON.stringify(axiosRequestConfig.data));
+    });
 
-    setGlobalConfig(globalConfig);
-    requestLogger(axiosRequestConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[global custom prefix]'));
-});
+    test('if global config is defined only, logger make log with options', () => {
+        const globalConfig = {
+            prefixText: '[global custom prefix]',
+        };
 
-test('if local config is defined only, logger make log with options', () => {
-    const localConfig = {
-        prefixText: '[local custom prefix]',
-    };
+        setGlobalConfig(globalConfig);
+        requestLogger(axiosRequestConfig);
+        expect(printLog).toHaveBeenCalled();
+        toCalledWith(printLog, '[global custom prefix]');
+    });
 
-    requestLogger(axiosRequestConfig, localConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
-});
+    test('if local config is defined only, logger make log with options', () => {
+        const localConfig = {
+            prefixText: '[local custom prefix]',
+        };
 
-test('if both global and local config are defined, local config should override global config', () => {
-    const globalConfig = {
-        prefixText: '[global custom prefix]',
-    };
+        requestLogger(axiosRequestConfig, localConfig);
+        expect(printLog).toHaveBeenCalled();
+        toCalledWith(printLog, '[local custom prefix]');
+    });
 
-    const localConfig = {
-        prefixText: '[local custom prefix]',
-    };
+    test('if both global and local config are defined, local config should override global config', () => {
+        const globalConfig = {
+            prefixText: '[global custom prefix]',
+        };
 
-    setGlobalConfig(globalConfig);
-    requestLogger(axiosRequestConfig, localConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.stringContaining('[local custom prefix]'));
-});
+        const localConfig = {
+            prefixText: '[local custom prefix]',
+        };
 
-test('if prefixText is false, remove prefix', () => {
-    const globalConfig = {
-        prefixText: false,
-    };
+        requestLogger(axiosRequestConfig, localConfig);
+        expect(printLog).toHaveBeenCalled();
+        toCalledWith(printLog, '[local custom prefix]');
+    });
 
-    setGlobalConfig(globalConfig);
-    requestLogger(axiosRequestConfig);
-    expect(printLog).toHaveBeenCalled();
-    expect(printLog).toBeCalledWith(expect.not.stringContaining('[Axios]'));
+    test('if prefixText is false, remove prefix', () => {
+        const globalConfig = {
+            prefixText: false,
+        };
+
+        setGlobalConfig(globalConfig);
+        requestLogger(axiosRequestConfig);
+        expect(printLog).toHaveBeenCalled();
+        toNotCalledWith(printLog, '[Axios]');
+    });
+
+    test('Should log with custom function', () => {
+        const globalConfig = {
+            prefixText: '[global custom prefix]',
+        };
+
+        const customLogger = jest.fn();
+        const localConfig = {
+            logger: customLogger,
+        };
+
+        requestLogger(axiosRequestConfig, localConfig);
+        expect(customLogger).toHaveBeenCalled();
+    });
 });

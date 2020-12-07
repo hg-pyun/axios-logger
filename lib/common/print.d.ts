@@ -1,2 +1,1 @@
-declare function printLog(text: string): void;
-export { printLog, };
+export declare function printLog(text: string, buildConfig?: any): void;
