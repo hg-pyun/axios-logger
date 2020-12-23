@@ -1,5 +1,20 @@
 # Change Log
 
+## 2.5.0
+
+-   Enriched README with more information on how to specify the logger function to be used. (#66)
+-   Add log config into error logger with a promise (#72) (#73)
+-   Customizing logger function doesn't work, always uses global config logger (#75) (#76)
+-   Remove lib folder (#77) (#78)
+-   logger is a required but not actually used (#71)
+
+## 2.4.0
+
+-   Support more loggers (#53) (#62)
+-   Placing HTTP method first, then the URL (#60) (#63)
+-   Allow for no timestamp being appended (#64)
+-   Explicitly set defaults in the code, as documented (#65)
+
 ## 2.3.1
 
 -   Fix `headers` config typo

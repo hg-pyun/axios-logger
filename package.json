@@ -1,6 +1,6 @@
 {
     "name": "axios-logger",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "description": "Beautify Axios Logging Messages",
     "main": "lib/index.js",
     "keywords": [
@@ -27,29 +27,29 @@
     },
     "homepage": "https://github.com/hg-pyun/axios-logger#readme",
     "devDependencies": {
-        "@babel/cli": "^7.7.7",
-        "@babel/core": "^7.7.7",
-        "@babel/plugin-proposal-class-properties": "^7.7.4",
-        "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
-        "@babel/preset-env": "^7.7.7",
-        "@babel/preset-typescript": "^7.7.7",
-        "@types/jest": "^24.0.25",
-        "@types/node": "^12.12.22",
+        "@babel/cli": "^7.12.10",
+        "@babel/core": "^7.12.10",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+        "@babel/preset-env": "^7.12.11",
+        "@babel/preset-typescript": "^7.12.7",
+        "@types/jest": "^24.9.1",
+        "@types/node": "^12.19.9",
         "axios": "^0.18.0",
         "body-parser": "^1.19.0",
         "compression": "^1.7.4",
-        "cookie-parser": "^1.4.4",
+        "cookie-parser": "^1.4.5",
         "cross-env": "^5.2.1",
         "express": "^4.17.1",
         "husky": "^2.7.0",
         "jest": "^24.9.0",
         "lint-staged": "^8.2.1",
         "prettier": "^1.19.1",
-        "typescript": "^3.7.4"
+        "typescript": "^3.9.7"
     },
     "dependencies": {
         "@types/dateformat": "^3.0.1",
-        "chalk": "^2.4.1",
+        "chalk": "^4.1.0",
         "dateformat": "^3.0.3"
     },
     "husky": {
