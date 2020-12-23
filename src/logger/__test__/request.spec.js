@@ -1,7 +1,6 @@
 import { requestLogger, setGlobalConfig } from '../../index';
-import { printLog } from '../../common/print';
 
-jest.mock('../../common/print');
+const printLog = jest.fn(() => {});
 
 const axiosRequestConfig = {
     data: {
@@ -14,6 +13,7 @@ const axiosRequestConfig = {
 
 beforeEach(() => {
     printLog.mockClear();
+    setGlobalConfig({ logger: printLog });
 });
 
 test('request should be return immutable AxiosRequestConfig', () => {
@@ -76,4 +76,12 @@ test('if prefixText is false, remove prefix', () => {
     requestLogger(axiosRequestConfig);
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.not.stringContaining('[Axios]'));
+});
+
+test('if custom logger is respected', () => {
+    const customPrintLog = jest.fn(() => {});
+
+    requestLogger(axiosRequestConfig, { logger: customPrintLog });
+    expect(printLog).not.toHaveBeenCalled();
+    expect(customPrintLog).toHaveBeenCalled();
 });

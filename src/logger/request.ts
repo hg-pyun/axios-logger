@@ -2,9 +2,8 @@ import { AxiosRequestConfig } from 'axios';
 import { RequestLogConfig } from '../common/types';
 import { assembleBuildConfig } from '../common/config';
 import StringBuilder from '../common/string-builder';
-import { printLog } from '../common/print';
 
-function requestLogger(request: AxiosRequestConfig, config?: RequestLogConfig) {
+function requestLogger(request: AxiosRequestConfig, config: RequestLogConfig = {}) {
 
     const {url, method, data, headers} = request;
     const buildConfig = assembleBuildConfig(config);
@@ -19,7 +18,7 @@ function requestLogger(request: AxiosRequestConfig, config?: RequestLogConfig) {
         .makeData(data)
         .build();
 
-    printLog(log);
+    buildConfig.logger(log);
 
     return request;
 }

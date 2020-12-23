@@ -1,8 +1,7 @@
 import { setGlobalConfig } from '../../index';
-import { printLog } from '../../common/print';
 import { errorLoggerWithoutPromise } from '../error';
 
-jest.mock('../../common/print');
+const printLog = jest.fn(() => {});
 
 const axiosError = {
     code: 500,
@@ -20,6 +19,7 @@ const axiosError = {
 
 beforeEach(() => {
     printLog.mockClear();
+    setGlobalConfig({ logger: printLog });
 });
 
 test('response should be return immutable axiosError', () => {
@@ -88,4 +88,12 @@ test('if prefixText is false, remove prefix', () => {
     errorLoggerWithoutPromise(axiosError);
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.not.stringContaining('[Axios]'));
+});
+
+test('if custom logger is respected', () => {
+    const customPrintLog = jest.fn(() => {});
+
+    errorLoggerWithoutPromise(axiosError, { logger: customPrintLog });
+    expect(printLog).not.toHaveBeenCalled();
+    expect(customPrintLog).toHaveBeenCalled();
 });

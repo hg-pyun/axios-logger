@@ -58,8 +58,10 @@ class StringBuilder {
         return this;
     }
 
-    makeStatus(status?:number, statusText?: string) {
-        if(status && statusText) this.printQueue.push(`${status}:${statusText}`);
+    makeStatus(status?: number, statusText?: string) {
+        if(this.config.status && this.config.statusText && status && statusText) this.printQueue.push(`${status}:${statusText}`);
+        else if(this.config.status && status) this.printQueue.push(`${status}`);
+        else if(this.config.statusText && statusText) this.printQueue.push(statusText);
         return this;
     }
 
