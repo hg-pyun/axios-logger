@@ -71,3 +71,10 @@ test('makeStatus should add status', () => {
 
     expect(result).toContain('200:OK');
 });
+
+test('makeTime should add time', () => {
+    const sb = new StringBuilder({ time: true });
+    const result = sb.makeTime(200).build();
+
+    expect(result).toContain('+200ms');
+});

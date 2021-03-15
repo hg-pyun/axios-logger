@@ -2,10 +2,12 @@ import { AxiosRequestConfig } from 'axios';
 import { RequestLogConfig } from '../common/types';
 import { assembleBuildConfig } from '../common/config';
 import StringBuilder from '../common/string-builder';
+import { requestMetaService } from '../common/request-meta-service';
 
 function requestLogger(request: AxiosRequestConfig, config: RequestLogConfig = {}) {
+    requestMetaService.add(request, { time: Date.now() });
 
-    const {url, params, method, data, headers} = request;
+    const { url, params, method, data, headers } = request;
     const buildConfig = assembleBuildConfig(config);
 
     const stringBuilder = new StringBuilder(buildConfig);

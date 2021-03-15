@@ -4,6 +4,7 @@ export interface CommonConfig {
     headers?: boolean,
     logger?: (text: string) => any,
     params?: boolean,
+    time?: boolean,
 }
 
 export interface GlobalLogConfig extends CommonConfig {
@@ -28,4 +29,8 @@ export interface ResponseLogConfig extends CommonConfig {
 
 export interface ErrorLogConfig extends CommonConfig {
     data?: boolean,
+}
+
+export interface Meta {
+    time: number
 }
