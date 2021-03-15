@@ -29,8 +29,7 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
     expect(getGlobalConfig()).toEqual({
         method: true,
         url: false,
-        params,
-        false,
+        params: false,
         data: true,
         status: true,
         statusText: true,
