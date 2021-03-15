@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import { ErrorLogConfig } from '../common/types';
 import { assembleBuildConfig } from '../common/config';
 import StringBuilder from '../common/string-builder';
+import { requestMetaService } from '../common/request-meta-service';
 
 function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {}) {
 
@@ -17,6 +18,13 @@ function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {
 
     const buildConfig = assembleBuildConfig(config);
 
+    const meta = requestMetaService.delete(error.config);
+
+    let time;
+    if (meta) {
+        time = Date.now() - meta.time;
+    }
+
     const stringBuilder = new StringBuilder(buildConfig);
     const log = stringBuilder
         .makeLogTypeWithPrefix('Error')
@@ -27,6 +35,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {
         .makeStatus(status, statusText)
         .makeHeader(headers)
         .makeData(data)
+        .makeTime(time)
         .build();
 
     buildConfig.logger(log);

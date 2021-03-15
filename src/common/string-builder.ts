@@ -10,11 +10,26 @@ class StringBuilder {
     constructor(config: GlobalLogConfig) {
         this.config = config;
         this.printQueue = [];
-        this.filteredHeaderList = ['common', 'delete', 'get', 'head', 'post', 'put', 'patch', 'content-type', 'content-length', 'vary', 'date', 'connection', 'content-security-policy'];
+        this.filteredHeaderList = [
+            'common',
+            'delete',
+            'get',
+            'head',
+            'post',
+            'put',
+            'patch',
+            'content-type',
+            'content-length',
+            'vary',
+            'date',
+            'connection',
+            'content-security-policy',
+        ];
     }
 
     makeLogTypeWithPrefix(logType: string) {
-        const prefix = this.config.prefixText === false ? `[${logType}]` : `[${this.config.prefixText || 'Axios'}][${logType}]`;
+        const prefix =
+            this.config.prefixText === false ? `[${logType}]` : `[${this.config.prefixText || 'Axios'}][${logType}]`;
         this.printQueue.push(chalk.green(prefix));
         return this;
     }
@@ -29,11 +44,11 @@ class StringBuilder {
         return this;
     }
 
-    makeHeader(headers?: { [key:string] : {value:string}}) {
-        if(this.config.headers && headers) {
-            const headerMap:{ [key:string] : {value:string}} = {};
-            for(let key in headers) {
-                if(!this.filteredHeaderList.includes(key)) {
+    makeHeader(headers?: { [key: string]: { value: string } }) {
+        if (this.config.headers && headers) {
+            const headerMap: { [key: string]: { value: string } } = {};
+            for (let key in headers) {
+                if (!this.filteredHeaderList.includes(key)) {
                     headerMap[key] = headers[key];
                 }
             }
@@ -44,29 +59,36 @@ class StringBuilder {
     }
 
     makeUrl(url?: string) {
-        if(this.config.url && url) this.printQueue.push(url);
+        if (this.config.url && url) this.printQueue.push(url);
         return this;
     }
 
     makeParams(params?: object) {
-        if(this.config.params && params) this.printQueue.push(JSON.stringify(params));
+        if (this.config.params && params) this.printQueue.push(JSON.stringify(params));
         return this;
     }
 
     makeMethod(method?: string) {
-        if(this.config.method && method) this.printQueue.push(chalk.yellow(method.toUpperCase()));
+        if (this.config.method && method) this.printQueue.push(chalk.yellow(method.toUpperCase()));
         return this;
     }
 
     makeData(data: object) {
-        if(this.config.data && data) this.printQueue.push(JSON.stringify(data));
+        if (this.config.data && data) this.printQueue.push(JSON.stringify(data));
         return this;
     }
 
     makeStatus(status?: number, statusText?: string) {
-        if(this.config.status && this.config.statusText && status && statusText) this.printQueue.push(`${status}:${statusText}`);
-        else if(this.config.status && status) this.printQueue.push(`${status}`);
-        else if(this.config.statusText && statusText) this.printQueue.push(statusText);
+        if (this.config.status && this.config.statusText && status && statusText)
+            this.printQueue.push(`${status}:${statusText}`);
+        else if (this.config.status && status) this.printQueue.push(`${status}`);
+        else if (this.config.statusText && statusText) this.printQueue.push(statusText);
+        return this;
+    }
+
+    makeTime(time?: number) {
+        if (this.config.time && time) this.printQueue.push(chalk.yellow(`+${time}ms`));
+
         return this;
     }
 
