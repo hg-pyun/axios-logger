@@ -1,5 +1,5 @@
 {
-    "name": "axios-logger",
+    "name": "axios-logger-plus",
     "version": "2.5.0",
     "description": "Beautify Axios Logging Messages",
     "main": "lib/index.js",
@@ -19,8 +19,8 @@
         "type": "git",
         "url": "git+https://github.com/webbrother/axios-logger.git"
     },
-    "author": "Haegul Pyun",
-    "email": "phg2491@gmail.com",
+    "author": "Vitaliy Komarov",
+    "email": "komarov.vitaliy@gmail.com",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/webbrother/axios-logger/issues"
