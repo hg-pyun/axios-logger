@@ -56,8 +56,7 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
     expect(buildConfig).toEqual({
         method: true,
         url: true,
-        params,
-        false,
+        params: false,
         data: false,
         status: true,
         statusText: true,
