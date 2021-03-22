@@ -1,9 +1,9 @@
-# axios-logger
+# axios-logger-plus
 
-[![npm](https://img.shields.io/npm/v/axios-logger.svg)](https://www.npmjs.com/package/axios-logger)
-[![npm](https://img.shields.io/npm/dm/axios-logger.svg)](https://www.npmjs.com/package/axios-logger)
-[![GitHub license](https://img.shields.io/github/license/hg-pyun/axios-logger.svg)](https://github.com/hg-pyun/axios-logger/blob/master/LICENSE)
-[![CircleCI](https://circleci.com/gh/hg-pyun/axios-logger/tree/master.svg?style=svg)](https://circleci.com/gh/hg-pyun/axios-logger/tree/master)
+[![npm](https://img.shields.io/npm/v/axios-logger.svg)](https://www.npmjs.com/package/axios-logger-plus)
+[![npm](https://img.shields.io/npm/dm/axios-logger.svg)](https://www.npmjs.com/package/axios-logger-plus)
+[![GitHub license](https://img.shields.io/github/license/hg-pyun/axios-logger.svg)](https://github.com/webbrother/axios-logger-plus/blob/master/LICENSE)
+[![CircleCI](https://circleci.com/gh/hg-pyun/axios-logger/tree/master.svg?style=svg)](https://circleci.com/gh/webbrother/axios-logger-plus/tree/master)
 
 > Beautify Axios Logging Messages.
 
@@ -19,7 +19,7 @@ Basically This package is working as [Axios's interceptors](https://github.com/a
 ## Install
 
 ```
-$ npm install axios-logger --save-dev
+$ npm install axios-logger-plus --save-dev
 ```
 
 ## How to use
@@ -30,7 +30,7 @@ You can use various loggers through the `axios`'s interceptor API.
 
 ```javascript
 import axios from 'axios';
-import * as AxiosLogger from 'axios-logger';
+import * as AxiosLogger from 'axios-logger-plus';
 
 const instance = axios.create();
 instance.interceptors.request.use(AxiosLogger.requestLogger);
@@ -49,7 +49,7 @@ instance.interceptors.request.use((request) => {
 
 ```javascript
 import axios from 'axios';
-import * as AxiosLogger from 'axios-logger';
+import * as AxiosLogger from 'axios-logger-plus';
 
 const instance = axios.create();
 instance.interceptors.response.use(AxiosLogger.responseLogger);
@@ -70,7 +70,7 @@ You can inject `errorLogger` right after `requestLogger` or `responseLogger`.
 
 ```javascript
 import axios from 'axios';
-import * as AxiosLogger from 'axios-logger';
+import * as AxiosLogger from 'axios-logger-plus';
 
 const instance = axios.create();
 instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
