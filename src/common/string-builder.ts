@@ -66,7 +66,7 @@ class StringBuilder {
     }
 
     makeResponseTime(startDateTime?: number, endDateTime?: number) {
-        if(this.config.time && startDateTime && endDateTime) this.printQueue.push(chalk.yellow(`${endDateTime - startDateTime} ms`));
+        if(this.config.responseTime && startDateTime && endDateTime) this.printQueue.push(chalk.yellow(`${endDateTime - startDateTime} ms`));
         return this;
     }
 
