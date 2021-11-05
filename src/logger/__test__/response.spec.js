@@ -95,3 +95,12 @@ test('if custom logger is respected', () => {
     expect(printLog).not.toHaveBeenCalled();
     expect(customPrintLog).toHaveBeenCalled();
 });
+
+test('if baseUrl is taken into consideration', () => {
+    responseLogger({
+        ...axiosResponse,
+        config: { ...axiosResponse.config, baseURL: 'https://github.com/', url: '/hg-pyun' },
+    });
+    expect(printLog).toHaveBeenCalled();
+    expect(printLog).toBeCalledWith(expect.stringContaining(axiosResponse.config.url));
+});
