@@ -43,8 +43,11 @@ class StringBuilder {
         return this;
     }
 
-    makeUrl(url?: string) {
-        if(this.config.url && url) this.printQueue.push(url);
+    makeUrl(url?: string, baseUrl?: string) {
+        if(this.config.url && url) {
+            if(baseUrl) url = this.combineURLs(baseUrl, url);
+            this.printQueue.push(url);
+        }
         return this;
     }
 
@@ -59,7 +62,8 @@ class StringBuilder {
     }
 
     makeData(data: object) {
-        if(this.config.data && data) this.printQueue.push(JSON.stringify(data));
+        const str = typeof data === `string` ? data : JSON.stringify(data);
+        if(this.config.data && data) this.printQueue.push(str);
         return this;
     }
 
@@ -73,6 +77,16 @@ class StringBuilder {
     build() {
         return this.printQueue.join(' ');
     }
+
+    /**
+     * Helper imported from Axios library
+     * @see https://github.com/axios/axios/blob/d99d5faac29899eba68ce671e6b3cbc9832e9ad8/lib/helpers/combineURLs.js
+     * */
+    combineURLs(baseURL: string, relativeURL?: string): string {
+        return relativeURL
+            ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
+            : baseURL;
+    };
 }
 
 export default StringBuilder;

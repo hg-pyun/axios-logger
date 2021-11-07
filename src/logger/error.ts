@@ -5,7 +5,7 @@ import StringBuilder from '../common/string-builder';
 
 function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {}) {
 
-    const {config: { method, url, params }, response} = error;
+    const {config: { method, baseURL, params, url }, response} = error;
 
     let status, statusText, data, headers;
     if (response) {
@@ -22,7 +22,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {
         .makeLogTypeWithPrefix('Error')
         .makeDateFormat(new Date())
         .makeMethod(method)
-        .makeUrl(url)
+        .makeUrl(url, baseURL)
         .makeParams(params)
         .makeStatus(status, statusText)
         .makeHeader(headers)
