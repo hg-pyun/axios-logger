@@ -20,6 +20,7 @@ app.use(cookieParser());
 
 setGlobalConfig({
     logger: console.info,
+    params: true,
 });
 
 app.get('/test/get', (req, res, next) => {
@@ -29,7 +30,7 @@ app.get('/test/get', (req, res, next) => {
     instance.interceptors.request.use(AxiosLogger.requestLogger);
     instance.interceptors.response.use(AxiosLogger.responseLogger);
 
-    instance.get('http://localhost:3000/echo/get?echo=hello').then((data) => {
+    instance.get('http://localhost:3000/echo/get', { params: { slug: 'test' } }).then((data) => {
         res.json(200);
     });
 });
@@ -39,7 +40,7 @@ app.get('/test/post', (req, res, next) => {
     instance.interceptors.request.use(AxiosLogger.requestLogger);
     instance.interceptors.response.use(AxiosLogger.responseLogger);
 
-    instance.post('http://localhost:3000/echo/post', { echo: 'hello' }).then((data) => {
+    instance.post('http://localhost:3000/echo/post', { params: { slug: 'test' } }).then((data) => {
         res.json(200);
     });
 });
