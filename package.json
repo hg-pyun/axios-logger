@@ -33,6 +33,7 @@
         "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
         "@babel/preset-env": "^7.12.11",
         "@babel/preset-typescript": "^7.12.7",
+        "@types/dateformat": "^3.0.1",
         "@types/jest": "^24.9.1",
         "@types/node": "^12.19.9",
         "axios": "^0.21.1",
@@ -48,7 +49,6 @@
         "typescript": "^3.9.7"
     },
     "dependencies": {
-        "@types/dateformat": "^3.0.1",
         "chalk": "^4.1.0",
         "dateformat": "^3.0.3"
     },
