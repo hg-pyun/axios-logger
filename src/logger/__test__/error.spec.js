@@ -28,6 +28,14 @@ test('response should be return immutable axiosError', () => {
     expect(mockLogger).toReturnWith(axiosError);
 });
 
+test('if erorr.config is undefined, return original error', () => {
+    const error = new Error('Unexpected error');
+
+    const mockLogger = jest.fn(errorLoggerWithoutPromise);
+    mockLogger(error);
+    expect(mockLogger).toReturnWith(error);
+});
+
 test('if config is undefined, logger make default log', () => {
     const {
         config: { url, method },

@@ -4,6 +4,9 @@ import { assembleBuildConfig } from '../common/config';
 import StringBuilder from '../common/string-builder';
 
 function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {}) {
+    if (!error.config) {
+        return error
+    }
 
     const {config: { method, baseURL, params, url }, response} = error;
 
