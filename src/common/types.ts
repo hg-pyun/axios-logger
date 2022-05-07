@@ -28,4 +28,6 @@ export interface ResponseLogConfig extends CommonConfig {
 
 export interface ErrorLogConfig extends CommonConfig {
     data?: boolean,
+    status?: boolean,
+    statusText?: boolean,
 }
