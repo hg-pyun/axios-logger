@@ -71,3 +71,17 @@ test('makeStatus should add status', () => {
 
     expect(result).toContain('200:OK');
 });
+
+test('makeData should not stringify data if configured not to', () => {
+    const config = {
+        ...getGlobalConfig(),
+        data: false,
+    };
+    const a = {};
+    const b = {};
+    a.b = b;
+    b.a = a;
+    const sb = new StringBuilder(config);
+    const result = sb.makeData(a).build();
+    expect(result).toEqual('');
+});

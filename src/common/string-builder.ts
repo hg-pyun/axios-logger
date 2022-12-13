@@ -62,8 +62,10 @@ class StringBuilder {
     }
 
     makeData(data: object) {
-        const str = typeof data === `string` ? data : JSON.stringify(data);
-        if(this.config.data && data) this.printQueue.push(str);
+        if(this.config.data && data) {
+            const str = typeof data === `string` ? data : JSON.stringify(data);
+            this.printQueue.push(str);
+        }
         return this;
     }
 
