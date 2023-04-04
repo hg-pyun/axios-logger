@@ -90,8 +90,7 @@ class StringBuilder {
     }
 
     build() {
-        const lineStart = this.buildLineHeader();
-        return `${lineStart} ` + this.printQueue.join(' ');
+            return this.buildLineHeader() ? `${this.buildLineHeader()} ` + this.printQueue.join(' ') : this.printQueue.join(' ');
     }
 
     /**

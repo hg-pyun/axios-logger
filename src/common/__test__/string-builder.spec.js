@@ -1,5 +1,6 @@
 import StringBuilder from '../string-builder';
 import { getGlobalConfig } from '../config';
+import chalk from 'chalk';
 
 test('makeLogTypeWithPrefix should add prefix text', () => {
     const sb = new StringBuilder(getGlobalConfig());
@@ -84,4 +85,17 @@ test('makeData should not stringify data if configured not to', () => {
     const sb = new StringBuilder(config);
     const result = sb.makeData(a).build();
     expect(result).toEqual('');
+});
+
+test('makeTraceId should add a string if configured', () => {
+    const testId = '1324567890987654321';
+    const config = {
+        ...getGlobalConfig(),
+        traceId: testId,
+    };
+
+    const sb = new StringBuilder(config);
+    const result = sb.makeTraceId().build();
+
+    expect(result).toContain(`[${chalk.blue(testId)}]`);
 });

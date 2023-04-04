@@ -24,6 +24,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {
     const log = stringBuilder
         .makeLogTypeWithPrefix('Error')
         .makeDateFormat(new Date())
+        .makeTraceId()
         .makeMethod(method)
         .makeUrl(url, baseURL)
         .makeParams(params)
