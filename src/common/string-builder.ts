@@ -86,7 +86,7 @@ class StringBuilder {
     }
 
     buildLineHeader() {
-        return this.lineHeader.join();
+        return this.lineHeader.join('');
     }
 
     build() {
