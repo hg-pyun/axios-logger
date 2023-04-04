@@ -4,18 +4,20 @@ import chalk from 'chalk';
 
 class StringBuilder {
     private config: GlobalLogConfig;
+    private lineHeader: Array<string>;
     private printQueue: Array<string>;
     private filteredHeaderList: Array<String>;
 
     constructor(config: GlobalLogConfig) {
         this.config = config;
+        this.lineHeader = [];
         this.printQueue = [];
         this.filteredHeaderList = ['common', 'delete', 'get', 'head', 'post', 'put', 'patch', 'content-type', 'content-length', 'vary', 'date', 'connection', 'content-security-policy'];
     }
 
     makeLogTypeWithPrefix(logType: string) {
         const prefix = this.config.prefixText === false ? `[${logType}]` : `[${this.config.prefixText || 'Axios'}][${logType}]`;
-        this.printQueue.push(chalk.green(prefix));
+        this.lineHeader.push(chalk.green(prefix));
         return this;
     }
 
@@ -24,7 +26,14 @@ class StringBuilder {
         if (this.config.dateFormat !== false) {
             // @ts-ignore
             const dateFormat = dateformat(date, this.config.dateFormat || 'isoDateTime');
-            this.printQueue.push(dateFormat);
+            this.lineHeader.push(`[${dateFormat}]`);
+        }
+        return this;
+    }
+
+    makeTraceId() {
+        if (this.config.traceId !== false) {
+            this.lineHeader.push(`[${chalk.blue(this.config.traceId)}]`);
         }
         return this;
     }
@@ -76,8 +85,13 @@ class StringBuilder {
         return this;
     }
 
+    buildLineHeader() {
+        return this.lineHeader.join();
+    }
+
     build() {
-        return this.printQueue.join(' ');
+        const lineStart = this.buildLineHeader();
+        return `${lineStart} ` + this.printQueue.join(' ');
     }
 
     /**

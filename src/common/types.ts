@@ -12,18 +12,21 @@ export interface GlobalLogConfig extends CommonConfig {
     url?: boolean,
     status?: boolean,
     statusText?: boolean,
+    traceId?: string | boolean,
 }
 
 export interface RequestLogConfig extends CommonConfig {
     data?: boolean,
     method?: boolean,
     url?: boolean,
+    traceId?: string | boolean,
 }
 
 export interface ResponseLogConfig extends CommonConfig {
     data?: boolean,
     status?: boolean,
     statusText?: boolean,
+    traceId?: string | boolean,
 }
 
 export interface ErrorLogConfig extends CommonConfig {
