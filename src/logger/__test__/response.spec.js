@@ -1,4 +1,5 @@
 import { responseLogger, setGlobalConfig } from '../../index';
+import chalk from 'chalk';
 
 const printLog = jest.fn(() => {});
 
@@ -103,4 +104,41 @@ test('if baseUrl is taken into consideration', () => {
     });
     expect(printLog).toHaveBeenCalled();
     expect(printLog).toBeCalledWith(expect.stringContaining(axiosResponse.config.url));
+});
+
+test('test a full response', () => {
+    const globalConfig = {
+        prefixText: 'TEST',
+        dateFormat: 'dd-mm-yyyy HH:MM:ss.l',
+        status: true,
+        method: true,
+        headers: true,
+        data: true,
+        traceId: '1324567890987654321',
+    };
+
+    const {
+        status,
+        statusText,
+        data,
+        config: { url, method },
+    } = axiosResponse;
+
+    setGlobalConfig(globalConfig);
+    responseLogger(axiosResponse);
+    expect(printLog).toHaveBeenCalled();
+    expect(printLog).toBeCalledWith(expect.stringContaining('[TEST]'));
+    expect(printLog).toBeCalledWith(expect.stringContaining('[Response]'));
+    expect(printLog).toBeCalledWith(expect.stringContaining(`[${chalk.blue('1324567890987654321')}]`));
+    expect(printLog).toBeCalledWith(
+        expect.stringMatching(
+            new RegExp(
+                /\[[01]?\d-(([0-2]?\d)|([3][01]))-((199\d)|([2-9]\d{3})) ([0-1]\d|[2][0-3]):([0-5]\d):([0-5]\d).(\d{0,3})\]/
+            )
+        )
+    );
+    expect(printLog).toBeCalledWith(expect.stringContaining(method));
+    expect(printLog).toBeCalledWith(expect.stringContaining(url));
+    expect(printLog).toBeCalledWith(expect.stringContaining(`${status}:${statusText}`));
+    expect(printLog).toBeCalledWith(expect.stringContaining(data));
 });
