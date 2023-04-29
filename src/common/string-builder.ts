@@ -80,15 +80,9 @@ class StringBuilder {
         return this.printQueue.join(' ');
     }
 
-    /**
-     * Helper imported from Axios library
-     * @see https://github.com/axios/axios/blob/d99d5faac29899eba68ce671e6b3cbc9832e9ad8/lib/helpers/combineURLs.js
-     * */
-    combineURLs(baseURL: string, relativeURL?: string): string {
-        return relativeURL
-            ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '')
-            : baseURL;
-    };
+   combineURLs(baseURL: string, relativeURL?: string): string {
+        return relativeURL ? new URL(relativeURL, baseURL || undefined).toString() : baseURL;
+    }
 }
 
 export default StringBuilder;

@@ -85,3 +85,38 @@ test('makeData should not stringify data if configured not to', () => {
     const result = sb.makeData(a).build();
     expect(result).toEqual('');
 });
+
+test('combineURLs should combine the base URL with the relative URL', () => {
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.combineURLs('https://github.com', '/users/hg-pyun');
+
+    expect(result).toBe('https://github.com/users/hg-pyun');
+});
+
+test(`combineURLs should not combine the base and relative URL's if the relative one is a complete URL`, () => {
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.combineURLs('https://github.com', 'https://github.com/users/hg-pyun');
+
+    expect(result).toBe('https://github.com/users/hg-pyun');
+});
+
+test('combineURLs should return the base URL when the relative URL is empty', () => {
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.combineURLs('https://github.com', '');
+
+    expect(result).toBe('https://github.com');
+});
+
+test('combineURLs should return the relative URL when the base URL is empty', () => {
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.combineURLs('', 'https://github.com/users/hg-pyun');
+
+    expect(result).toBe('https://github.com/users/hg-pyun');
+});
+
+test('combineURLs should return the relative URL when the base URL is undefined', () => {
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.combineURLs(undefined, 'https://github.com/users/hg-pyun');
+
+    expect(result).toBe('https://github.com/users/hg-pyun');
+});
