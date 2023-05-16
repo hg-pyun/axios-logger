@@ -85,3 +85,38 @@ test('makeData should not stringify data if configured not to', () => {
     const result = sb.makeData(a).build();
     expect(result).toEqual('');
 });
+
+test('makeData should truncate if data length exceeds dataLimit', () => {
+    const config = {
+        ...getGlobalConfig(),
+        data: true,
+        dataLimit: 10,
+    };
+    const a = '12345678901234567890';
+    const sb = new StringBuilder(config);
+    const result = sb.makeData(a).build();
+    expect(result).toEqual('1234567890...');
+});
+
+test('makeData should not truncate if dataLimit is not specified', () => {
+    const config = {
+        ...getGlobalConfig(),
+        data: true,
+    };
+    const a = '12345678901234567890';
+    const sb = new StringBuilder(config);
+    const result = sb.makeData(a).build();
+    expect(result).toEqual(a);
+});
+
+test('makeData should not crash if data has circular references', () => {
+    const config = {
+        ...getGlobalConfig(),
+        data: true,
+    };
+    const a = {};
+    a.b = { a };
+    const sb = new StringBuilder(config);
+    const result = sb.makeData(a).build();
+    expect(result).toEqual('');
+});

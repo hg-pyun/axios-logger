@@ -5,6 +5,7 @@ let globalConfig: Required<GlobalLogConfig> = {
     url: true,
     params: false,
     data: true,
+    dataLimit: 0,
     status: true,
     statusText: true,
     logger: console.log,
