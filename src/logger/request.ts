@@ -14,7 +14,7 @@ function requestLogger(request: AxiosRequestConfig, config: RequestLogConfig = {
     .makeMethod(method)
     .makeUrl(url, baseURL)
     .makeParams(params)
-    .makeHeader(headers)
+    .makeHeader(headers as unknown as { [key: string]: { value: string } }) // TODO: fix type
     .makeData(data)
     .build();
 

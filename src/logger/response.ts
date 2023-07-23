@@ -22,7 +22,7 @@ function responseLogger(response: AxiosResponse, config: ResponseLogConfig = {})
     .makeUrl(url, baseURL)
     .makeParams(params)
     .makeStatus(status, statusText)
-    .makeHeader(headers)
+    .makeHeader(headers as unknown as { [key: string]: { value: string } }) // TODO: fix type
     .makeData(data)
     .build();
 

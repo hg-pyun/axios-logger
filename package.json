@@ -1,8 +1,17 @@
 {
   "name": "axios-logger",
-  "version": "2.6.2",
+  "version": "3.0.0",
   "description": "Beautify Axios Logging Messages",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "type": "module",
+  "exports": {
+    "./lib": {
+      "types": "./types/index.d.ts" ,
+      "require": "./cjs/index.js",
+      "import": "./esm/index.js"
+    }
+  },
   "keywords": [
     "javascript",
     "nodejs",
@@ -27,12 +36,6 @@
   },
   "homepage": "https://github.com/hg-pyun/axios-logger#readme",
   "devDependencies": {
-    "@babel/cli": "^7.22.9",
-    "@babel/core": "^7.22.9",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/preset-env": "^7.22.9",
-    "@babel/preset-typescript": "^7.22.5",
     "@types/dateformat": "^5.0.0",
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.4",
@@ -66,9 +69,9 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "build": "rm -rf ./lib && npm run build:types && npm run build:js",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "cross-env BABEL_ENV=production babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "build": "npm run build:clean && npm run build:ts",
+    "build:clean": "rm -rf ./lib",
+    "build:ts": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
     "test": "jest --silent",
     "test:watch": "jest --watchAll",
     "test:server": "node ./test/server.js",

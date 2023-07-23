@@ -31,8 +31,8 @@ function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {
     .makeUrl(url, baseURL)
     .makeParams(params)
     .makeStatus(status, statusText)
-    .makeHeader(headers)
-    .makeData(data)
+    .makeHeader(headers as unknown as { [key: string]: { value: string } }) // TODO: fix type
+    .makeData(data as (string | object)) // TODO: fix type
     .build();
 
   buildConfig.logger(log);
