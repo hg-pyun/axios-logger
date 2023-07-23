@@ -3,5 +3,5 @@
   "trailingComma": "es5",
   "singleQuote": true,
   "arrowParens": "always",
-  "tabWidth": 4
+  "tabWidth": 2
 }

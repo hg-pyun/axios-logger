@@ -19,40 +19,40 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cookieParser());
 
 setGlobalConfig({
-    logger: console.info,
-    params: true,
+  logger: console.info,
+  params: true,
 });
 
 app.get('/test/get', (req, res, next) => {
-    const instance = axios.create({
-        headers: { 'X-Custom-Header': 'foobar' },
-    });
-    instance.interceptors.request.use(AxiosLogger.requestLogger);
-    instance.interceptors.response.use(AxiosLogger.responseLogger);
+  const instance = axios.create({
+    headers: { 'X-Custom-Header': 'foobar' },
+  });
+  instance.interceptors.request.use(AxiosLogger.requestLogger);
+  instance.interceptors.response.use(AxiosLogger.responseLogger);
 
-    instance.get('http://localhost:3000/echo/get', { params: { slug: 'test' } }).then((data) => {
-        res.json(200);
-    });
+  instance.get('http://localhost:3000/echo/get', { params: { slug: 'test' } }).then((data) => {
+    res.json(200);
+  });
 });
 
 app.get('/test/post', (req, res, next) => {
-    const instance = axios.create();
-    instance.interceptors.request.use(AxiosLogger.requestLogger);
-    instance.interceptors.response.use(AxiosLogger.responseLogger);
+  const instance = axios.create();
+  instance.interceptors.request.use(AxiosLogger.requestLogger);
+  instance.interceptors.response.use(AxiosLogger.responseLogger);
 
-    instance.post('http://localhost:3000/echo/post', { params: { slug: 'test' } }).then((data) => {
-        res.json(200);
-    });
+  instance.post('http://localhost:3000/echo/post', { params: { slug: 'test' } }).then((data) => {
+    res.json(200);
+  });
 });
 
 app.get('/test/get/error', (req, res, next) => {
-    const instance = axios.create();
-    instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
-    instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
+  const instance = axios.create();
+  instance.interceptors.request.use(AxiosLogger.requestLogger, AxiosLogger.errorLogger);
+  instance.interceptors.response.use(AxiosLogger.responseLogger, AxiosLogger.errorLogger);
 
-    instance.get('http://localhost:3000/echo/notfound').catch(() => {
-        res.sendStatus(404);
-    });
+  instance.get('http://localhost:3000/echo/notfound').catch(() => {
+    res.sendStatus(404);
+  });
 });
 
 /**
@@ -60,39 +60,39 @@ app.get('/test/get/error', (req, res, next) => {
  *  /test/* -> /echo/*
  */
 app.get('/echo/get', (req, res, next) => {
-    res.set({
-        'X-Custom-Response': 'foobar',
-    });
-    res.json({
-        status: 200,
-        message: 'echo get',
-    });
+  res.set({
+    'X-Custom-Response': 'foobar',
+  });
+  res.json({
+    status: 200,
+    message: 'echo get',
+  });
 });
 
 app.post('/echo/post', (req, res, next) => {
-    res.set({
-        'X-Custom-Response': 'foobar',
-    });
-    res.json({
-        status: 200,
-        message: 'echo post',
-    });
+  res.set({
+    'X-Custom-Response': 'foobar',
+  });
+  res.json({
+    status: 200,
+    message: 'echo post',
+  });
 });
 
-process.on('SIGINT', function() {
-    server.on('close', function() {
-        process.exit(0);
-    });
-    server.close(function() {
-        console.log('Server closed.');
-    });
+process.on('SIGINT', function () {
+  server.on('close', function () {
+    process.exit(0);
+  });
+  server.close(function () {
+    console.log('Server closed.');
+  });
 });
 
 app.listen(port, () => {
-    if (process.env.pm_id) {
-        process.send('ready');
-        console.log(`Server started. (port: ${port}, cluster_id: ${process.env.pm_id})`);
-    } else {
-        console.log(`Server started. (port: ${port}, fork mode)`);
-    }
+  if (process.env.pm_id) {
+    process.send('ready');
+    console.log(`Server started. (port: ${port}, cluster_id: ${process.env.pm_id})`);
+  } else {
+    console.log(`Server started. (port: ${port}, fork mode)`);
+  }
 });

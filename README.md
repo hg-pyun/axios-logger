@@ -40,8 +40,8 @@ If you want to use your own interceptor, you can compose(mixin) with `requestLog
 
 ```javascript
 instance.interceptors.request.use((request) => {
-    // write down your request intercept.
-    return AxiosLogger.requestLogger(request);
+  // write down your request intercept.
+  return AxiosLogger.requestLogger(request);
 });
 ```
 
@@ -59,8 +59,8 @@ Also if you want to use your own interceptor, you can compose(mixin) with `respo
 
 ```javascript
 instance.interceptors.response.use((response) => {
-    // write down your response intercept.
-    return AxiosLogger.responseLogger(response);
+  // write down your response intercept.
+  return AxiosLogger.responseLogger(response);
 });
 ```
 
@@ -81,8 +81,8 @@ Also if you want to use your own interceptor, you can compose(mixin) with `error
 
 ```javascript
 instance.interceptors.response.use(AxiosLogger.responseLogger, (err) => {
-    // write down your error intercept.
-    return AxiosLogger.errorLogger(err);
+  // write down your error intercept.
+  return AxiosLogger.errorLogger(err);
 });
 ```
 
@@ -93,11 +93,11 @@ If you want to set config globally, using `setGlobalConfig` method.
 
 ```javascript
 setGlobalConfig({
-    prefixText: 'your prefix',
-    dateFormat: 'HH:MM:ss',
-    status: false,
-    headers: true,
-    logger: someLogger.info.bind(this),
+  prefixText: 'your prefix',
+  dateFormat: 'HH:MM:ss',
+  status: false,
+  headers: true,
+  logger: someLogger.info.bind(this),
 });
 ```
 
@@ -106,14 +106,14 @@ override the global configuration.
 
 ```javascript
 instance.interceptors.request.use((request) => {
-    // write down your request intercept.
-    return AxiosLogger.requestLogger(request, {
-        prefixText: 'your prefix',
-        dateFormat: 'HH:MM:ss',
-        status: false,
-        headers: true,
-        logger: someLogger.error.bind(this),
-    });
+  // write down your request intercept.
+  return AxiosLogger.requestLogger(request, {
+    prefixText: 'your prefix',
+    dateFormat: 'HH:MM:ss',
+    status: false,
+    headers: true,
+    logger: someLogger.error.bind(this),
+  });
 });
 ```
 
