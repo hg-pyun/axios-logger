@@ -62,9 +62,22 @@ class StringBuilder {
     }
 
     makeData(data: object) {
-        if(this.config.data && data) {
-            const str = typeof data === `string` ? data : JSON.stringify(data);
+        if (this.config.data && data) {
+            let str;
+            try {
+                str = typeof data === `string` ? data : JSON.stringify(data);
+            } catch (e) {
+                // stringify failed, ignore
+                return this;
+            }
+
+            let dataLimit = this.config.dataLimit;
+            if (dataLimit && str?.length > dataLimit) {
+                str = str.substring(0, dataLimit) + '...';
+            }
+
             this.printQueue.push(str);
+
         }
         return this;
     }
