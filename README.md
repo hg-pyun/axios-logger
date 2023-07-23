@@ -131,6 +131,7 @@ instance.interceptors.request.use((request) => {
 | `prefixText` | string \| `false`                                                   | `'Axios'`     | `false` => no prefix, otherwise, customize the prefix wanted.                                                                                  |
 | `dateFormat` | [dateformat](https://github.com/felixge/node-dateformat) \| `false` | `false`       | `false` => no timestamp, otherwise, customize its format                                                                                       |
 | `logger`     | function<string, any>                                               | `console.log` | Allows users to customize the logger function to be used. e.g. Winston's `logger.info` could be leveraged, like this: `logger.info.bind(this)` |
+| `traceId`    | string \| `false`                                                   | `false`       | Allows users to add a string to be used as a traceable id between request/response (or a sequence of them).                                    |
 
 ## CONTRIBUTE
 

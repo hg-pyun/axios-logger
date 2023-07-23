@@ -12,6 +12,7 @@ function requestLogger(request: AxiosRequestConfig, config: RequestLogConfig = {
     const log = stringBuilder
         .makeLogTypeWithPrefix('Request')
         .makeDateFormat(new Date())
+        .makeTraceId()
         .makeMethod(method)
         .makeUrl(url, baseURL)
         .makeParams(params)

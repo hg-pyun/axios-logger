@@ -15,6 +15,7 @@ test('Default globalConfig properties should be equal to default values', () => 
         dateFormat: false,
         prefixText: DEFAULT_PREFIX,
         headers: false,
+        traceId: false,
     });
 });
 
@@ -37,6 +38,7 @@ test('setGlobalConfig should set config. getGlobalConfig should return globalCon
         dateFormat: false,
         prefixText: DEFAULT_PREFIX,
         headers: false,
+        traceId: false,
     });
 });
 
@@ -64,5 +66,6 @@ test('assembleBuildConfig should return merged with globalConfig object.', () =>
         dateFormat: 'hh:mm:ss',
         prefixText: DEFAULT_PREFIX,
         headers: false,
+        traceId: false,
     });
 });

@@ -12,6 +12,7 @@ function responseLogger(response: AxiosResponse, config: ResponseLogConfig = {})
     const log = stringBuilder
         .makeLogTypeWithPrefix('Response')
         .makeDateFormat(new Date())
+        .makeTraceId()
         .makeMethod(method)
         .makeUrl(url, baseURL)
         .makeParams(params)
