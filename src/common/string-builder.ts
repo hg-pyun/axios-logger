@@ -1,6 +1,7 @@
 import dateformat from 'dateformat';
 import { GlobalLogConfig } from './types';
 import chalk from 'chalk';
+import { AxiosResponse } from "axios/index";
 
 class StringBuilder {
     private config: GlobalLogConfig;
@@ -29,7 +30,7 @@ class StringBuilder {
         return this;
     }
 
-    makeHeader(headers?: { [key:string] : {value:string}}) {
+    makeHeader(headers?: AxiosResponse['headers']) {
         if(this.config.headers && headers) {
             const headerMap:{ [key:string] : {value:string}} = {};
             for(let key in headers) {

@@ -29,7 +29,7 @@ function errorLoggerWithoutPromise(error: AxiosError, config: ErrorLogConfig = {
         .makeParams(params)
         .makeStatus(status, statusText)
         .makeHeader(headers)
-        .makeData(data)
+        .makeData(data as object) // TODO: fix type
         .build();
 
     buildConfig.logger(log);
