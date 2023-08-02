@@ -4,6 +4,7 @@
 
 -   fix: update typescript version (#131)
 -   fix: update axios version (#124)
+-   fix: update circle ci nodejs version 16
 
 ## 2.6.2
 
