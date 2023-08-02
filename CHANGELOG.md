@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.7.0
+
+-   fix: update typescript version (#131)
+-   fix: update axios version (#124)
+
+## 2.6.2
+
+-   fix: not stringifying data if data logging is disabled (#114)
+
+## 2.6.1
+
+Fix minor some bugs.
+
+-   #107
+-   #108
+-   #109
+-   #110
+-   #111
+
+## 2.6.0
+
+-   Add query params to log (#83)
+-   Use baseUrl to display full URL (#97)
+
 ## 2.5.0
 
 -   Enriched README with more information on how to specify the logger function to be used. (#66)
