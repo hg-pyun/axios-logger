@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.7.1
+
+-   fix: use the updated typing for the request parameter of the request interceptor (#147)
+
 ## 2.7.0
 
 -   fix: update typescript version (#131)
