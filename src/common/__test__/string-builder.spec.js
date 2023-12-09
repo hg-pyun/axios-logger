@@ -15,7 +15,7 @@ test('makeDateFormat should add date', () => {
     const date = new Date();
     const result = sb.makeDateFormat(date).build();
 
-    expect(result).toContain(date.getFullYear());
+    expect(result).toContain(date.getFullYear().toString());
 });
 
 test('makeDateFormat with dateFormat = false, does not add the timestamp', () => {

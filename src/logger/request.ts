@@ -1,9 +1,9 @@
-import { AxiosRequestConfig } from 'axios';
-import { RequestLogConfig } from '../common/types';
-import { assembleBuildConfig } from '../common/config';
-import StringBuilder from '../common/string-builder';
+import { InternalAxiosRequestConfig } from 'axios'
+import { assembleBuildConfig } from '../common/config'
+import StringBuilder from '../common/string-builder'
+import { RequestLogConfig } from '../common/types'
 
-function requestLogger(request: AxiosRequestConfig, config: RequestLogConfig = {}) {
+function requestLogger(request: InternalAxiosRequestConfig, config: RequestLogConfig = {}) {
 
     const {baseURL, url, params, method, data, headers} = request;
     const buildConfig = assembleBuildConfig(config);
