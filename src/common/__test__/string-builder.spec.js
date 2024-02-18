@@ -120,3 +120,10 @@ test('combineURLs should return the relative URL when the base URL is undefined'
 
     expect(result).toBe('https://github.com/users/hg-pyun');
 });
+
+test('combineURLs should return the relative URL when the base URL have a path', () => {
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.combineURLs('https://github.com/users', '/hg-pyun');
+
+    expect(result).toBe('https://github.com/users/hg-pyun');
+});
