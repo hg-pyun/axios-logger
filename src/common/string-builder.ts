@@ -83,38 +83,34 @@ class StringBuilder {
     }
 
     combineURLs(baseURL: string, relativeURL?: string): string {
-        const createURL = (url: string) => {
+        const checkURLContainHost = (url: string) => {
             try {
-                return new URL(url)
+                return new URL(url) // throw error if url without host
             } catch (e) {
                 return null
             }
         }
 
-        let url: string = '';
-        const isFirstUrl = (baseURL !== '' && baseURL !== undefined);
-        const firstURL = isFirstUrl ? new URL(baseURL) : null;
         const isRelativeUrl = relativeURL && relativeURL !== '';
-        const isRelativeUrlHaveHost = relativeURL && createURL(relativeURL) ? true : false;
-        const isBaseUrlHaveSubpath = firstURL && firstURL.pathname !== '' ? true : false;
-        
+
         if (!isRelativeUrl) {
             return baseURL;
-        }
+        }        
+
+        const isRelativeUrlHaveHost = relativeURL && checkURLContainHost(relativeURL) ? true : false;
 
         if (isRelativeUrlHaveHost) {
             return relativeURL as string;
-        }
+        } 
+            
+        const firstURL = (baseURL !== '') ? new URL(baseURL) : null;
+        const isBaseUrlHaveSubpath = firstURL && firstURL.pathname !== '' ? true : false;
 
-        if (!isRelativeUrlHaveHost) {
-            if (isBaseUrlHaveSubpath && firstURL) {
-                url = (new URL(path.join(firstURL.pathname, relativeURL as string), baseURL)).toString();
-            } else {
-                url = (new URL(relativeURL as string, baseURL)).toString();
-            }
+        if (isBaseUrlHaveSubpath && firstURL) {
+            return (new URL(path.join(firstURL.pathname, relativeURL as string), baseURL)).toString();
+        } else {
+            return (new URL(relativeURL as string, baseURL)).toString();
         }
-
-        return url;
     }
 }
 
