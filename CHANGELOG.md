@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.8.0
+
+-   fix: when baseURL contain path - add path to url string before relativePath (#149)
+
 ## 2.7.1
 
 -   fix: use the updated typing for the request parameter of the request interceptor (#147)
