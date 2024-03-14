@@ -2,6 +2,7 @@ import dateformat from 'dateformat';
 import { GlobalLogConfig } from './types';
 import chalk from 'chalk';
 import { AxiosResponse } from "axios/index";
+import path from 'path';
 
 class StringBuilder {
     private config: GlobalLogConfig;
@@ -81,8 +82,35 @@ class StringBuilder {
         return this.printQueue.join(' ');
     }
 
-   combineURLs(baseURL: string, relativeURL?: string): string {
-        return relativeURL ? new URL(relativeURL, baseURL || undefined).toString() : baseURL;
+    combineURLs(baseURL: string, relativeURL?: string): string {
+        const checkURLContainHost = (url: string) => {
+            try {
+                return new URL(url) // throw error if url without host
+            } catch (e) {
+                return null
+            }
+        }
+
+        const isRelativeUrl = relativeURL && relativeURL !== '';
+
+        if (!isRelativeUrl) {
+            return baseURL;
+        }        
+
+        const isRelativeUrlHaveHost = relativeURL && checkURLContainHost(relativeURL) ? true : false;
+
+        if (isRelativeUrlHaveHost) {
+            return relativeURL as string;
+        } 
+            
+        const firstURL = (baseURL !== '') ? new URL(baseURL) : null;
+        const isBaseUrlHaveSubpath = firstURL && firstURL.pathname !== '' ? true : false;
+
+        if (isBaseUrlHaveSubpath && firstURL) {
+            return (new URL(path.join(firstURL.pathname, relativeURL as string), baseURL)).toString();
+        } else {
+            return (new URL(relativeURL as string, baseURL)).toString();
+        }
     }
 }
 
