@@ -2,7 +2,7 @@ import dateformat from 'dateformat';
 import { GlobalLogConfig } from './types';
 import chalk from 'chalk';
 import { AxiosResponse } from "axios/index";
-import path from 'path';
+import { join } from "./utils";
 
 class StringBuilder {
     private config: GlobalLogConfig;
@@ -107,7 +107,7 @@ class StringBuilder {
         const isBaseUrlHaveSubpath = firstURL && firstURL.pathname !== '' ? true : false;
 
         if (isBaseUrlHaveSubpath && firstURL) {
-            return (new URL(path.join(firstURL.pathname, relativeURL as string), baseURL)).toString();
+            return (new URL(join(firstURL.pathname, relativeURL as string), baseURL)).toString();
         } else {
             return (new URL(relativeURL as string, baseURL)).toString();
         }
