@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.8.1
+
+-   fix: V2.8.0 Introduces incompatibilities with web and react native (#151)
+
 ## 2.8.0
 
 -   fix: when baseURL contain path - add path to url string before relativePath (#149)
