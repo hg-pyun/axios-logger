@@ -58,6 +58,14 @@ test('makeParams should add params', () => {
     expect(result).toContain(JSON.stringify(params));
 });
 
+test('makeParams should add params URLSearchParams', () => {
+    const sb = new StringBuilder({ params: true });
+    const params = new URLSearchParams({ param1: 'value1', param2: 'value2' });
+    const result = sb.makeParams(params).build();
+
+    expect(result).toContain(JSON.stringify(params));
+});
+
 test('makeMethod should add method with upper case', () => {
     const sb = new StringBuilder(getGlobalConfig());
     const result = sb.makeMethod('get').build();
@@ -70,6 +78,13 @@ test('makeStatus should add status', () => {
     const result = sb.makeStatus(200, 'OK').build();
 
     expect(result).toContain('200:OK');
+});
+
+test('makeData should string if URLSearchParams passed', () => {
+    const data = new URLSearchParams({ param1: 'value1', param2: 'value2' });
+    const sb = new StringBuilder(getGlobalConfig());
+    const result = sb.makeData(data).build();
+    expect(result).toContain(JSON.stringify(data));
 });
 
 test('makeData should not stringify data if configured not to', () => {
