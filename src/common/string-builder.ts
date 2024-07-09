@@ -2,7 +2,7 @@ import dateformat from 'dateformat';
 import { GlobalLogConfig } from './types';
 import chalk from 'chalk';
 import { AxiosResponse } from "axios/index";
-import { join } from "./utils";
+import { join, isURLSearchParams, convertURLSearchParamsToObject } from "./utils";
 
 class StringBuilder {
     private config: GlobalLogConfig;
@@ -54,7 +54,16 @@ class StringBuilder {
     }
 
     makeParams(params?: object) {
-        if(this.config.params && params) this.printQueue.push(JSON.stringify(params));
+        if(this.config.params && params) {
+            let str = '';
+            if (isURLSearchParams(params)) {
+                const obj = convertURLSearchParamsToObject(params as URLSearchParams);
+                str = JSON.stringify(obj);
+            } else {
+                str = typeof params === `string` ? params : JSON.stringify(params);
+            }
+            this.printQueue.push(str);
+        }
         return this;
     }
 
@@ -65,7 +74,13 @@ class StringBuilder {
 
     makeData(data: object) {
         if(this.config.data && data) {
-            const str = typeof data === `string` ? data : JSON.stringify(data);
+            let str: string = '';
+            if (isURLSearchParams(data)) {
+                const obj = convertURLSearchParamsToObject(data as URLSearchParams);
+                str = JSON.stringify(obj);
+            } else {
+                str = typeof data === `string` ? data : JSON.stringify(data);
+            }
             this.printQueue.push(str);
         }
         return this;
