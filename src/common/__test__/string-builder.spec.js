@@ -60,7 +60,7 @@ test('makeParams should add params', () => {
 
 test('makeParams should add params URLSearchParams', () => {
     const sb = new StringBuilder({ params: true });
-    const params = new URLSearchParams({ param1: 'value1', param2: 'value2' });
+    const data = new URLSearchParams({ param1: 'value1', param2: 'value2' });
     const result = sb.makeParams(params).build();
 
     expect(result).toContain(JSON.stringify(params));
