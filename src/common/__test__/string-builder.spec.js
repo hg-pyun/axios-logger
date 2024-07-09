@@ -61,9 +61,9 @@ test('makeParams should add params', () => {
 test('makeParams should add params URLSearchParams', () => {
     const sb = new StringBuilder({ params: true });
     const data = new URLSearchParams({ param1: 'value1', param2: 'value2' });
-    const result = sb.makeParams(params).build();
+    const result = sb.makeParams(data).build();
 
-    expect(result).toContain(JSON.stringify(params));
+    expect(result).toContain(JSON.stringify(data));
 });
 
 test('makeMethod should add method with upper case', () => {
