@@ -55,7 +55,7 @@ class StringBuilder {
 
     makeParams(params?: object) {
         if(this.config.params && params) {
-            let str: string = '';
+            let str = '';
             if (isURLSearchParams(params)) {
                 const obj = convertURLSearchParamsToObject(params as URLSearchParams);
                 str = JSON.stringify(obj);
