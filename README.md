@@ -3,7 +3,6 @@
 [![npm](https://img.shields.io/npm/v/axios-logger.svg)](https://www.npmjs.com/package/axios-logger)
 [![npm](https://img.shields.io/npm/dm/axios-logger.svg)](https://www.npmjs.com/package/axios-logger)
 [![GitHub license](https://img.shields.io/github/license/hg-pyun/axios-logger.svg)](https://github.com/hg-pyun/axios-logger/blob/master/LICENSE)
-[![CircleCI](https://circleci.com/gh/hg-pyun/axios-logger/tree/master.svg?style=svg)](https://circleci.com/gh/hg-pyun/axios-logger/tree/master)
 
 > Beautify Axios Logging Messages.
 
