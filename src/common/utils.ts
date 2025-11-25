@@ -13,3 +13,15 @@ export function join(...paths: string[]) {
     .replace(/\/+/g, '/'); // Replace multiple slashes with a single slash
   
 }
+
+export function isURLSearchParams(val: object) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+export function convertURLSearchParamsToObject(params: URLSearchParams) {
+  let arr: object = {};
+  for (const obj of params.entries()) {
+      Object.defineProperty(arr, obj[0], { value: obj[1]});
+  }
+  return arr;
+}
